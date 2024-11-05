@@ -1,29 +1,21 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import moment from "moment";
 
 const Icon = ({ positive, title, value }) => {
   return (
-    <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 12, paddingHorizontal: 5 }}>
+    <View className="flex-row items-center px-1">
       <View
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: 16,
-          backgroundColor: positive ? "#e0f7ea99" : "#ffebee99",
-          justifyContent: "center",
-          alignItems: "center",
-          marginRight: 10,
-        }}
+        className={`w-7 h-7 rounded-full ${positive ? "bg-green-100" : "bg-red-100"} justify-center items-center mr-2`}
       >
-        <Text style={{ color: positive ? "#06D001" : "#FF204E", fontSize: 20, fontWeight: "900" }}>
+        <Text className={`text-lg font-extrabold ${positive ? "text-green-600" : "text-red-600"}`}>
           {positive ? "+" : "-"}
         </Text>
       </View>
-      <View style={{ flexDirection: "column" }}>
-        <Text style={{ fontSize: 12, fontWeight: "400", color: "#ccc", marginBottom: 2 }}>{title}</Text>
-        <Text style={{ fontSize: 15, fontWeight: "600", color: "#fff" }}>{value}</Text>
+      <View className="flex-col">
+        <Text className="text-xs font-normal text-gray-400 mb-0.5">{title}</Text>
+        <Text className="text-sm font-semibold text-white">$ {value}</Text>
       </View>
     </View>
   );
@@ -32,18 +24,20 @@ const Icon = ({ positive, title, value }) => {
 export default function CreditCard() {
   return (
     <LinearGradient
-      colors={["#1f1c2c", "#928dab"]}
+      colors={["#12101a", "#2b2738", "#1f1c2c"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.gradientContainer}
     >
-      <View style={styles.dateContainer}>
-        <Text style={styles.dateText}>{moment().format("MMMM-YYYY")}</Text>
-        <Text style={styles.amountText}>$ 123,456.78</Text>
-      </View>
-      <View style={styles.iconContainer}>
-        <Icon positive title="Ingresos" value="123,456.78" />
-        <Icon positive={false} title="Gastos" value="123,456.78" />
+      <View className="flex flex-1 items-center justify-between">
+        <View className="flex-1 justify-center items-center">
+          <Text className="text-white text-sm text-center mb-3">{moment().format("MMMM-YYYY")}</Text>
+          <Text className="text-white text-4xl font-bold text-center">$ 123,456.78</Text>
+        </View>
+        <View className="w-full flex flex-row justify-between mt-2 p-2 items-center">
+          <Icon positive title="Ingresos" value="123,456.78" />
+          <Icon positive={false} title="Gastos" value="123,456.78" />
+        </View>
       </View>
     </LinearGradient>
   );
@@ -56,27 +50,12 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 25,
     padding: 20,
-  },
-  dateContainer: {
-    alignItems: "center",
-  },
-  dateText: {
-    color: "white",
-    fontSize: 15,
-    textAlign: "center",
-    marginBottom: 5,
-  },
-  amountText: {
-    color: "white",
-    fontSize: 23,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  iconContainer: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 10,
-    padding: 10,
-  },
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+  }
 });

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { View, Text, FlatList, Dimensions, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, FlatList, Dimensions, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 
@@ -7,14 +7,17 @@ const { width, height } = Dimensions.get("window");
 
 const onboardingData = [
   {
+    emoji: "🎯",
     title: "Define tus Metas Financieras",
     description: "Establece objetivos claros, como ahorrar para una casa o prepararte para el retiro. Nuestro asistente financiero te ayudará a crear un plan personalizado para alcanzar cada meta.",
   },
   {
+    emoji: "🚀",
     title: "Recibe Recomendaciones Inteligentes",
     description: "Descubre productos financieros y consejos personalizados para mejorar tu situación financiera. La app analiza tus hábitos y necesidades para ofrecerte la mejor orientación.",
   },
   {
+    emoji: "📊",
     title: "Monitorea tu Progreso y Mantente Enfocado",
     description: "Con herramientas de seguimiento y alertas en tiempo real, podrás ver cómo avanzas hacia tus metas y recibir recordatorios para mantenerte en el camino.",
   },
@@ -36,16 +39,17 @@ export default function OnboardingSlider() {
   };
 
   const renderItem = ({ item }: { item: typeof onboardingData[0] }) => (
-    <View style={styles.slide}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.description}>{item.description}</Text>
+    <View className="px-4" style={{ width, height }}>
+      <Text className="text-8xl font-bold mb-3 text-center">{item.emoji}</Text>
+      <Text className="text-2xl font-bold mb-6 text-center">{item.title}</Text>
+      <Text className="text-lg text-center px-5">{item.description}</Text>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header} />
-      <View style={styles.content}>
+    <View className="flex-1 bg-black">
+      <View className="w-full h-2/5 bg-black" />
+      <View className="w-full h-3/5 items-center bg-white rounded-t-2xl pt-12 pb-16">
         <FlatList
           ref={flatListRef}
           data={onboardingData}
@@ -59,22 +63,16 @@ export default function OnboardingSlider() {
             setCurrentIndex(slideIndex);
           }}
         />
-        <View style={{ flexDirection: "row" }}>
+        <View className="flex-row">
           {onboardingData.map((_, index) => (
             <View
               key={index}
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: 5,
-                backgroundColor: index === currentIndex ? "black" : "gray",
-                marginHorizontal: 5,
-              }}
+              className={`w-2.5 h-2.5 rounded-full mx-1 ${index === currentIndex ? "bg-black" : "bg-gray-400"}`}
             />
           ))}
         </View>
-        <TouchableOpacity onPress={handleNext} style={styles.button}>
-          <Text style={styles.buttonText}>
+        <TouchableOpacity onPress={handleNext} className="bg-black p-5 rounded-full w-11/12 mt-5 items-center">
+          <Text className="text-white text-lg font-semibold">
             {currentIndex === onboardingData.length - 1 ? "Empezar" : "Siguiente"}
           </Text>
         </TouchableOpacity>
@@ -82,55 +80,3 @@ export default function OnboardingSlider() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    width: width,
-    height: height * 0.4,
-    backgroundColor: "black",
-  },
-  content: {
-    position: "absolute",
-    top: height * 0.35,
-    width: width,
-    height: height * 0.65,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    paddingVertical: 50,
-  },
-  slide: {
-    width: width,
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 10,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 25,
-    textAlign: "center",
-  },
-  description: {
-    fontSize: 18,
-    textAlign: "center",
-    paddingHorizontal: 20,
-  },
-  button: {
-    backgroundColor: "#000",
-    padding: 20,
-    borderRadius: 35,
-    width: width - 30,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "600",
-  },
-});

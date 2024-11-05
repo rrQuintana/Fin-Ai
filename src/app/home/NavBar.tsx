@@ -5,7 +5,7 @@ type Props = {}
 
 const NavBar = (props: Props) => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
       <View>
         <Text style={{ fontSize: 15, color: 'gray', marginBottom: 10 }}>
           Bienvenido
