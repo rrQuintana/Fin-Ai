@@ -16,6 +16,9 @@
       ]
     ],
     "name": "fin-ai",
-    "slug": "fin-ai"
+    "slug": "fin-ai",
+    "ios": {
+      "bundleIdentifier": "com.rrquintanakn.fin-ai"
+    }
   }
 }

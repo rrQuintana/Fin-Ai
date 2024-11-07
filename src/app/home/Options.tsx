@@ -4,35 +4,40 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 const options = [
   {
-    name: 'Cuenta',
-    icon: 'person',
-    route: 'Account'
+    name: 'Movimientos',
+    icon: 'card',
+    route: 'Transactions'
   },
   {
-    name: 'Categorías',
-    icon: 'list',
-    route: 'Categories'
+    name: 'Presupuestos',
+    icon: 'wallet',
+    route: 'Budgets'
   },
   {
-    name: 'Metas',
-    icon: 'pizza',
-    route: 'Goals'
+    name: 'Recordatorios',
+    icon: 'notifications',
+    route: 'Reminders'
   },
   {
-    name: 'Configuración',
-    icon: 'settings',
-    route: 'Settings'
+    name: 'Recordatorios',
+    icon: 'notifications',
+    route: 'Reminders'
   },
   {
-    name: 'Metas',
-    icon: 'pizza',
-    route: 'Goals'
+    name: 'Recordatorios',
+    icon: 'notifications',
+    route: 'Reminders'
   },
   {
-    name: 'Configuración',
-    icon: 'pizza',
-    route: 'Settings'
-  }
+    name: 'Recordatorios',
+    icon: 'notifications',
+    route: 'Reminders'
+  },
+  {
+    name: 'Recordatorios',
+    icon: 'notifications',
+    route: 'Reminders'
+  },
 ]
 
 const OptionButton = ({ name, icon, route }) => {

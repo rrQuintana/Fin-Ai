@@ -34,7 +34,7 @@ export default function OnboardingSlider() {
       setCurrentIndex(currentIndex + 1);
     } else {
       await AsyncStorage.setItem("hasLaunched", "true");
-      router.replace("/home");
+      router.replace("/onboarding/ScreenTwo");
     }
   };
 

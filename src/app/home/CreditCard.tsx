@@ -29,10 +29,17 @@ export default function CreditCard() {
       end={{ x: 1, y: 1 }}
       style={styles.gradientContainer}
     >
-      <View className="flex flex-1 items-center justify-between">
-        <View className="flex-1 justify-center items-center">
+      <View className="flex flex-col items-center bg-black/20">
+        <View className="flex-1 justify-center items-center mb-3">
           <Text className="text-white text-sm text-center mb-3">{moment().format("MMMM-YYYY")}</Text>
           <Text className="text-white text-4xl font-bold text-center">$ 123,456.78</Text>
+        </View>
+        <View className="my-2">
+          <View className="flex flex-row w-full h-1 px-12 mb-1">
+            <View className="w-3/4 h-full bg-green-500" />
+            <View className="w-2/4 h-full bg-zinc-500" />
+          </View>
+          <Text className="text-white text-xs text-center">75% de tu meta mensual</Text>
         </View>
         <View className="w-full flex flex-row justify-between mt-2 p-2 items-center">
           <Icon positive title="Ingresos" value="123,456.78" />
