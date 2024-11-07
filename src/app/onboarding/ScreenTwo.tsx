@@ -29,15 +29,15 @@ export default function OnboardingForm() {
     },
     {
       question: "¿Cuál es tu ocupación?",
-      input: <CustomSelectField options={Object.values(Occupation)} selected={occupation} onChange={setOccupation} />
+      input: <CustomSelectField options={Object.values(Occupation)} selected={occupation} onChange={(option) => setOccupation(option as Occupation)} />
     },
     {
       question: "¿Cuál es tu objetivo financiero?",
-      input: <CustomSelectField options={Object.values(FinancialGoal)} selected={financialGoal} onChange={setFinancialGoal} />
+      input: <CustomSelectField options={Object.values(FinancialGoal)} selected={financialGoal} onChange={(option) => setFinancialGoal(option as FinancialGoal)} />
     },
     {
       question: "¿Ahorras regularmente?",
-      input: <CustomSelectField options={Object.values(YesNo)} selected={savesRegularly} onChange={setSavesRegularly} />
+      input: <CustomSelectField options={Object.values(YesNo)} selected={savesRegularly} onChange={(option) => setSavesRegularly(option as YesNo)} />
     },
     {
       question: "¿Cuánta deuda tienes?",
@@ -79,11 +79,11 @@ export default function OnboardingForm() {
     },
     {
       question: "¿Cuál es tu nivel de conocimiento financiero?",
-      input: <CustomSelectField options={Object.values(FinancialKnowledge)} selected={financialKnowledge} onChange={setFinancialKnowledge} />
+      input: <CustomSelectField options={Object.values(FinancialKnowledge)} selected={financialKnowledge} onChange={(option) => setFinancialKnowledge(option as FinancialKnowledge)} />
     },
     {
       question: "¿Prefieres ahorrar a largo o corto plazo?",
-      input: <CustomSelectField options={Object.values(SavingsPreference)} selected={savingsPreference} onChange={setSavingsPreference} />
+      input: <CustomSelectField options={Object.values(SavingsPreference)} selected={savingsPreference} onChange={(option) => setSavingsPreference(option as SavingsPreference)} />
     }
   ];
 
