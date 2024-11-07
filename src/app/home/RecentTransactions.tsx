@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { GastoCategoria, GastoCategoriaInfo } from '@/logic/types/GastoCategoria';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 
 const sampleData = [
   {
@@ -42,12 +43,18 @@ const sampleData = [
 ];
 
 const RecentTransactions = () => {
+  const router = useRouter();
+
   return (
     <View className='max-h-1/5'>
       {/* Header */}
       <View className="flex flex-row justify-between items-center mb-4">
         <Text className="font-medium text-lg">Actividad reciente</Text>
+        <TouchableOpacity
+        onPress={() => router.push('/transactions')}
+        >
         <Text className="text-zinc-500 text-sm">Ver detalles {'>'}</Text>
+        </TouchableOpacity>
       </View>
       
       {/* Transactions List */}
