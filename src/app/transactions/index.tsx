@@ -1,5 +1,5 @@
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
-import React from 'react'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Modal, TextInput, Button } from 'react-native'
+import React, { useState } from 'react'
 import MySpending from './MySpending'
 import { GastoCategoria, GastoCategoriaInfo } from '@/logic/types/GastoCategoria';
 import Expense from './Expense';
@@ -114,6 +114,26 @@ const sampleData = [
 ];
 
 const Transactions = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newTransaction, setNewTransaction] = useState({
+    name: '',
+    amount: '',
+    type: 'Gasto',
+    date: '',
+    category: GastoCategoriaInfo[GastoCategoria.COMPRAS_EN_LINEA],
+  });
+
+  const handleInputChange = (field, value) => {
+    setNewTransaction({ ...newTransaction, [field]: value });
+  };
+
+  const handleSubmit = () => {
+    // Aquí agregarías la lógica para actualizar el array de transacciones con la nueva entrada
+    sampleData.push({ ...newTransaction, amount: parseFloat(newTransaction.amount) });
+    setModalVisible(false);
+    console.log('Transacción agregada:', newTransaction);
+  };
+
   return (
     <SafeAreaView>
       <ScrollView className='p-3' showsVerticalScrollIndicator={false}>
@@ -122,8 +142,80 @@ const Transactions = () => {
         <Expense data={sampleData} />
         <RecentActivity data={sampleData} />
       </ScrollView>
-    </SafeAreaView>
-  )
-}
+      
+      {/* Botón flotante "+" en la esquina inferior derecha */}
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          bottom: 30,
+          right: 20,
+          width: 50,
+          height: 50,
+          backgroundColor: 'black',
+          borderRadius: 30,
+          justifyContent: 'center',
+          alignItems: 'center',
+          elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.25,
+        }}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={{ color: '#fff', fontSize: 30, fontWeight: 'bold' }}>+</Text>
+      </TouchableOpacity>
 
-export default Transactions
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        }}>
+          <View style={{
+            width: '80%',
+            backgroundColor: 'white',
+            padding: 20,
+            borderRadius: 10,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+          }}>
+            <Text className="text-xl text-center mb-4">Agregar Transacción</Text>
+            
+            <TextInput
+              placeholder="Nombre"
+              value={newTransaction.name}
+              onChangeText={(text) => handleInputChange('name', text)}
+              className="border-zinc-300 rounded-lg border p-4 mb-2"
+            />
+            <TextInput
+              placeholder="Monto"
+              keyboardType="numeric"
+              value={newTransaction.amount}
+              onChangeText={(text) => handleInputChange('amount', text)}
+              className="border-zinc-300 rounded-lg border p-4 mb-2"
+            />
+            <TextInput
+              placeholder="Fecha"
+              value={newTransaction.date}
+              onChangeText={(text) => handleInputChange('date', text)}
+              className="border-zinc-300 rounded-lg border p-4 mb-2"
+            />
+
+            <Button title="Agregar" onPress={() => setModalVisible(false)} />
+            <Button title="Cancelar" onPress={() => setModalVisible(false)} color="red" />
+          </View>
+        </View>
+      </Modal>
+    </SafeAreaView>
+  );
+};
+
+export default Transactions;
