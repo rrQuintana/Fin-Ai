@@ -1,62 +1,80 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, Modal, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import { learnData } from '@/logic/utils/learn'
 
 type Props = {}
 
-const data = [
-  {
-    title: 'Cuentas',
-    description: 'Administra tus cuentas',
-    icon: '🏦',
-  },
-  {
-    title: 'Tarjetas',
-    description: 'Administra tus tarjetas',
-    icon: '💳',
-  },
-  {
-    title: 'Transferencias',
-    description: 'Realiza transferencias',
-    icon: '💸',
-  },
-  {
-    title: 'Pagos',
-    description: 'Realiza pagos',
-    icon: '💰',
-  },
-]
-
-const Card = ({ title, description, icon }) => {
+const Card = ({ title, description, icon, onPress }: { title: string, description: string, icon: string, onPress: () => void }) => {
   return (
-    <View>
+    <TouchableOpacity onPress={onPress}>
       <View className='w-64 h-64 bg-gray-200 rounded-lg mr-4'>
-        <View className="h-1/2 bg-black rounded-t-md flex items-center justify-center">
-          <Text className='text-2xl'>{icon}</Text>
+        <View className='h-1/2 bg-black rounded-t-md justify-center items-center'>
+          <Text className='text-6xl text-white'>{icon}</Text>
         </View>
-        <View className="h-1/2 p-3">
+        <View className='h-1/2 p-3'>
           <Text className='text-lg font-semibold'>{title}</Text>
-          <Text className='text-gray-500'>{description}</Text>
+          <Text className='text-gray-500 mt-1 line-clamp-2'>{description}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
-const DiscoverMore = (props: Props) => {
+const DiscoverMore = ({title, data}) => {
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
+
+  const handleCardPress = (item: any) => {
+    setSelectedItem(item)
+    setModalVisible(true)
+  }
+
+  const closeModal = () => {
+    setModalVisible(false)
+    setSelectedItem(null)
+  }
+
   return (
-    <View>
-      <Text className='text-2xl font-semibold mb-3'>Descubre más</Text>
+    <View className='flex-1 px-4 mb-4'>
+      <Text className='text-2xl font-semibold mb-3'>{title}</Text>
       <FlatList
         data={data}
-        renderItem={({ item }) => <Card key={item.title} {...item} />}
+        renderItem={({ item }) => <Card key={item.title} {...item} onPress={() => handleCardPress(item)} />}
         keyExtractor={item => item.title}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
+
+      {/* Modal */}
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={closeModal}
+      >
+        <View className='flex-1 justify-center items-center bg-white bg-opacity-50' >
+          <ScrollView className='w-5/5 h-2/5'>
+            <View className='bg-white p-5 rounded-lg pt-16 pb-12'>
+              <View className="bg-black p-5 my-8">
+                <Text className='text-white text-5xl text-center'>{selectedItem?.icon}</Text>
+              </View>
+
+              <Text className='text-4xl font-semibold mb-2'>{selectedItem?.title}</Text>
+              <Text className='text-gray-500 mb-5'>{selectedItem?.description}</Text>
+
+              {selectedItem?.content?.paraphs.map((para, index) => (
+                <Text key={index} className='text-gray-700 mb-5 text-justify'>{para}</Text>
+              ))}
+
+              <TouchableOpacity onPress={closeModal} className='mt-4'>
+                <Text className='text-blue-500 text-center'>Cerrar</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </View>
+      </Modal>
     </View>
   )
 }
 
 export default DiscoverMore
-
-const styles = StyleSheet.create({})

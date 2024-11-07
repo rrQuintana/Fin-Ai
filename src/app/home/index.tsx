@@ -7,6 +7,7 @@ import Options from './Options'
 import Divider from '@/components/Divider'
 import DiscoverMore from './DiscoverMore'
 import RecentTransactions from './RecentTransactions'
+import { investmentProducts, learnData } from '@/logic/utils/learn'
 
 type Props = {}
 
@@ -20,7 +21,9 @@ const Home = (props: Props) => {
         <Divider />
         <RecentTransactions />
         <Divider />
-        <DiscoverMore />
+        <DiscoverMore title='Productos recomendados' data={investmentProducts} />
+        <Divider />
+        <DiscoverMore title='Educación financiera'  data={learnData} />
       </ScrollView>
     </SafeAreaView>
   )
