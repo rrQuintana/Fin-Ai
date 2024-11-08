@@ -19,7 +19,7 @@ export default function PageLayoutButton({
                 <TouchableOpacity className=" ml-8">
                     <ArrowBack />
                 </TouchableOpacity>
-                <Animated.Text  entering={FadeInUp.duration(1000)} className={`font-bold text-finai ${height > 667 ? 'text-4xl' : 'text-2xl' } `}>{title}</Animated.Text>
+                <Animated.Text  entering={FadeInUp.duration(1000)} className={`font-bold text-[#231f20] ${height > 667 ? 'text-4xl' : 'text-2xl' } `}>{title}</Animated.Text>
                 <TouchableOpacity className=" mr-8">
                     <BellNotification />
                 </TouchableOpacity>

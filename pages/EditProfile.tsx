@@ -32,7 +32,7 @@ export default function EditProfile() {
       <View className="w-full flex justify-center items-center space-y-2">
         <Image
           className="rounded-full w-36 h-36 border-4"
-          style={{ borderColor: "#1C759E" }}
+          style={{ borderColor: "#231f20" }}
           source={DefaultProfileImage}
         />
         <View className="w-full">
@@ -168,7 +168,7 @@ export default function EditProfile() {
 
           <TouchableOpacity
             onPress={handleSubmit(handleSignUp)}
-            className="bg-finai py-2 px-4 rounded-full mt-6"
+            className="bg-[#231f20] py-2 px-4 rounded-full mt-6"
           >
             <Text className="text-white mx-20 my-2 font-medium text-xl">
               Crear cuenta

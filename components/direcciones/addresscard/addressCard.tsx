@@ -16,7 +16,7 @@ export default function AddressCard({street, secondary_info} : AddressInterface)
 
             <View className="flex-auto w-1/4 items-center justify-center">
                 <TouchableOpacity>
-                    <Text className="text-finai text-right">
+                    <Text className="text-[#231f20] text-right">
                         Editar
                     </Text>
                 </TouchableOpacity>

@@ -63,7 +63,7 @@ export default function SignUp() {
   }
 
   return (
-    <View className="bg-finai flex-1 items-center justify-center">
+    <View className="bg-[#231f20] flex-1 items-center justify-center">
       <ScrollView
         showsVerticalScrollIndicator={false}
         className="w-full"
@@ -84,15 +84,15 @@ export default function SignUp() {
             >
               <ArrowBack />
             </TouchableOpacity>
-            <Text className="text-finai text-center text-3xl font-semibold mb-2">
-              Refréscate
+            <Text className="text-[#231f20] text-center text-3xl font-semibold mb-2">
+              Registrate
             </Text>
             <View>
               <ArrowBack style={{ opacity: 0 }} />
             </View>
           </View>
           <Text className="text-black text-center text-md font-medium mb-6">
-            Pide pipas de agua fácil y seguro
+            Mejora tus finanzas personales
           </Text>
           <Controller
             name="username"
@@ -213,12 +213,12 @@ export default function SignUp() {
             </Text>
           )}
 
-          <Text className="text-finai w-80 mt-10 mb-4">
+          <Text className="text-[#231f20] w-80 mt-10 mb-4">
             Al registrarse usted acepta nuestros términos y condiciones{" "}
           </Text>
           <TouchableOpacity
             onPress={handleSubmit(handleSignUp)}
-            className="bg-finai py-2 px-4 rounded-full mt-6"
+            className="bg-[#231f20] py-2 px-4 rounded-full mt-6"
           >
             <Text className="text-white mx-20 my-2 font-medium text-xl">
               Crear cuenta

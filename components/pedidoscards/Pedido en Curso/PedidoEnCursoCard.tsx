@@ -21,7 +21,7 @@ export default function PedidoEnCursoCard(pedido: PedidoCardInterface) {
                   {pedido.estatus}
                 </Text>
                 <View className=" flex flex-row items-center">
-                  <View className="bg-finai h-5 w-5 rounded-full"></View>
+                  <View className="bg-[#231f20] h-5 w-5 rounded-full"></View>
                   <DashedLine width={100}/>
                   <DestinationMarker />
                 </View>
@@ -35,7 +35,7 @@ export default function PedidoEnCursoCard(pedido: PedidoCardInterface) {
 
             <View className="flex w-2/5 justify-between">
               <View className="self-end">
-                <Text className="text-finai text-right text-lg font-bold">
+                <Text className="text-[#231f20] text-right text-lg font-bold">
                   MXN ${pedido.precio}
                 </Text>
               </View>

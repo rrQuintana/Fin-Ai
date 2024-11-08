@@ -32,7 +32,7 @@ export default function Login() {
   }
 
   return (
-    <SafeAreaView className="bg-finai flex-1 items-center justify-center">
+    <SafeAreaView className="bg-[#231f20] flex-1 items-center justify-center">
       <Landing />
       <View
         style={{ borderTopRightRadius: 70, borderTopLeftRadius: 70 }}
@@ -40,7 +40,7 @@ export default function Login() {
       >
         <View className=" mt-10 items-center justify-center">
           <LargeLogo />
-          <Text className="text-finai text-3xl font-semibold mt-10 mb-5">
+          <Text className="text-[#231f20] text-3xl font-semibold mt-10 mb-5">
             Inicia Sesión
           </Text>
         </View>
@@ -63,20 +63,20 @@ export default function Login() {
           onPress={() => navigate("ForgotPassword")}
           className="mt-4 w-full justify-self-start pl-10 ml-2"
         >
-          <Text className="text-finai">Olvidaste tu contraseña?</Text>
+          <Text className="text-[#231f20]">Olvidaste tu contraseña?</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleSignIn}
-          className="bg-finai py-2 px-4 rounded-full mt-16"
+          className="bg-[#231f20] py-2 px-4 rounded-full mt-16"
         >
           <Text className="text-white mx-20 my-2 font-medium text-xl">
             Iniciar Sesión
           </Text>
         </TouchableOpacity>
         <View className="mt-20 flex-row justify-self-start">
-          <Text className="text-finai">¿Aún no te registras </Text>
+          <Text className="text-[#231f20]">¿Aún no te registras </Text>
           <TouchableOpacity onPress={() => navigate("SignUp")}>
-            <Text className="text-finai underline">Únete al viaje</Text>
+            <Text className="text-[#231f20] underline">Únete a FinAI</Text>
           </TouchableOpacity>
         </View>
       </View>

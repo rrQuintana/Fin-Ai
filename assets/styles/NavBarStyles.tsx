@@ -3,7 +3,7 @@ import { ViewStyle, ImageStyle } from "react-native";
 export const tabBarOptions: ViewStyle = {
   position: "absolute",
   borderRadius: 20,
-  backgroundColor: "#1C759E",
+  backgroundColor: "#231f20",
   bottom: 22,
   left: 18,
   right: 18,

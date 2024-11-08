@@ -161,13 +161,13 @@ export default function Address() {
     }
     
     return (
-        <SafeAreaView className="bg-finai flex-1 items-center justify-center">
+        <SafeAreaView className="bg-[#231f20] flex-1 items-center justify-center">
             <View
                 className="bg-white p-4 w-screen h-screen mt-32 items-center justify-start "
                 style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}
             >
 
-                    <Text className="text-finai text-center text-3xl font-semibold mt-10">
+                    <Text className="text-[#231f20] text-center text-3xl font-semibold mt-10">
                         Agregar dirección
                     </Text>
 

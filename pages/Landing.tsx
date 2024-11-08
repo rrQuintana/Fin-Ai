@@ -1,36 +1,37 @@
 import { View } from "react-native";
 import { OnboardFlow } from 'react-native-onboard';
 import { Image } from "react-native";
-import pipa from "@assets/images/landing/pipa.png"
+import goals from "@assets/images/landing/goals.png"
 import payment from "@assets/images/landing/payment.png"
-import location from "@assets/images/landing/location.png"
+import progress from "@assets/images/landing/progress.png"
 
 
 export default function Landing() {
 
   return (
-    <View className="bg-blue-500">
+    <View className="bg-[#231f20]}">
       <OnboardFlow pages={[
         {
-          title: 'Elige la cantidad de agua',
-          subtitle: 'La pipa de agua con la cantidad necesaria para tu hogar.',
-          imageUri: Image.resolveAssetSource(pipa).uri
+          title: 'Define tus Metas Financieras',
+          subtitle: 'Establece objetivos claros, como ahorrar para una casa o prepararte para el retiro. Nuestro asistente financiero te ayudará a crear un plan personalizado para alcanzar cada meta.',
+          imageUri: Image.resolveAssetSource(goals).uri
+          
         },
         {
-          title: 'Realiza el pago',
-          subtitle: 'Paga de manera digital de forma segura en tan solo unos pasos.',
+          title: 'Recibe Recomendaciones Inteligentes',
+          subtitle: 'Descubre productos financieros y consejos personalizados para mejorar tu situación financiera. La app analiza tus hábitos y necesidades para ofrecerte la mejor orientación.',
           imageUri: Image.resolveAssetSource(payment).uri
         },
         {
-          title: 'Recibe tu agua',
-          subtitle: 'Espera a que alguno de nuestros conductores llegue a tu domicilio con tu agua.',
-          imageUri: Image.resolveAssetSource(location).uri
+          title: 'Monitorea tu Progreso y Mantente Enfocado',
+          subtitle: 'Con herramientas de seguimiento y alertas en tiempo real, podrás ver cómo avanzas hacia tus metas y recibir recordatorios para mantenerte en el camino.',
+          imageUri: Image.resolveAssetSource(progress).uri
         }
       ]}
         type='bottom-sheet' paginationColor="#000000" 
-        paginationSelectedColor="#1C759E" 
-        primaryButtonStyle={{ backgroundColor: '#1C759E'}} 
-        titleStyle={{ color: '#1C759E'}} 
+        paginationSelectedColor="#231f20" 
+        primaryButtonStyle={{ backgroundColor: '#231f20'}} 
+        titleStyle={{ color: '#231f20'}} 
       />
     </View>
   );
