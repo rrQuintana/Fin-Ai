@@ -13,7 +13,14 @@
     },
     "categories": {
       "auth": {
+        "watouwebsite": {},
         "finAIwonder": {}
+      },
+      "api": {
+        "watouwebsite": {}
+      },
+      "function": {
+        "clientesFunction": {}
       }
     }
   }
