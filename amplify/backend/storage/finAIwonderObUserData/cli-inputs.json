@@ -1,0 +1,12 @@
+{
+  "resourceName": "finAIwonderObUserData",
+  "tableName": "finAIwonderObUserData",
+  "partitionKey": {
+    "fieldName": "email",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": [
+    "finAIwonderObUserDataTrigger0a7c3773"
+  ]
+}
