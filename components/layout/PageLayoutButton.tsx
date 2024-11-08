@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, useWindowDimensions } from "react-native";
+import { View, TouchableOpacity, useWindowDimensions, Text } from "react-native";
 import { LayoutInterface } from "@interfaces/pageLayoutInterfaces";
 import Animated, { FadeInUp } from "react-native-reanimated"
 import ArrowBack from "@assets/icons/ArrowBack.svg";
@@ -20,7 +20,7 @@ export default function PageLayoutButton({
                 <TouchableOpacity className="ml-8" style={{ opacity: dontShowArrow ? 0 : 1 }}>
                     <ArrowBack />
                 </TouchableOpacity>
-                <Animated.Text entering={FadeInUp.duration(1000)} className={`font-bold text-[#231f20] ${height > 667 ? 'text-4xl' : 'text-2xl' } `}>{title}</Animated.Text>
+                <Text className={`font-bold text-[#231f20] ${height > 667 ? 'text-4xl' : 'text-2xl' } `}>{title}</Text>
                 <TouchableOpacity className=" mr-8">
                     <BellNotification />
                 </TouchableOpacity>

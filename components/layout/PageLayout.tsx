@@ -16,8 +16,8 @@ export default function PageLayout({
         style={location ? { borderBottomLeftRadius: 30, borderBottomRightRadius: 30 } : { borderBottomLeftRadius: 50, borderBottomRightRadius: 50 }}
         className={`bg-[#231f20] w-full ${height > 667 ? 'h-44' : 'h-24' } px-6  justify-center items-center`}
       >
-        <View className="w-full items-center z-[-10]">
-          <Animated.Text  entering={FadeInUp.duration(1000)} className={`font-bold text-white ${height > 667 ? 'text-4xl mt-8' : 'text-2xl mt-4' } `}>{title}</Animated.Text>
+        <View className="w-full items-center" style={{ zIndex: 1 }}>
+          <Text className={`font-bold text-white ${height > 667 ? 'text-4xl mt-8' : 'text-2xl mt-4' } `}>{title}</Text>
         </View>
       </View>
       {

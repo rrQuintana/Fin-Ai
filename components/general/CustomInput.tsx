@@ -7,6 +7,8 @@ export default function CustomInput({
   onChangeText,
   secureTextEntry,
   icon: Icon,
+  keyboardType,
+  inputMode
 }: CustomInputProps) {
   return (
     <View className="bg-white border-gray-200 rounded-3xl border w-80 flex flex-row items-center justify-evenly mt-10">
@@ -18,8 +20,10 @@ export default function CustomInput({
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        inputMode={inputMode}
       />
-      <Icon />
+      {Icon && <Icon />}
     </View>
   );
 }
