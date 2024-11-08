@@ -1,4 +1,4 @@
-package com.softwaremisdesarrollos.finai_clients
+package com.wonder.finai_clients
 
 import android.os.Build
 import android.os.Bundle
