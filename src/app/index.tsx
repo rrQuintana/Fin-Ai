@@ -1,10 +1,6 @@
-import { Link, Redirect } from "expo-router";
-import React from "react";
-import '../global.css'
+import { Redirect } from 'expo-router';
+import '../global.css';
 
-export default function Page() {
-  return (
-    <Redirect href="/onboarding" />
-  );
+export default function Index() {
+  return <Redirect href="/(tabs)" />;
 }
-
