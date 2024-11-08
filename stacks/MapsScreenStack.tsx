@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Maps from "@pages/Maps";
+import Maps from "@pages/Otros";
 
 const MapsStack = createNativeStackNavigator();
 

@@ -34,7 +34,7 @@ export default function Tabs() {
         component={HomeScreenStack}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomItemTab focused={focused} iconName={"home"} labelText="Home" />
+            <CustomItemTab focused={focused} iconName={"home"} labelText="Finanzas" />
           ),
         }}
       />
@@ -43,7 +43,7 @@ export default function Tabs() {
         component={MapsScreenStack}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomItemTab focused={focused} iconName={"pin"} labelText="Mapa" />
+            <CustomItemTab focused={focused} iconName={"pin"} labelText="Otros" />
           ),
         }}
       />

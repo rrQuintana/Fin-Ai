@@ -19,14 +19,6 @@ export default function PageLayout({
         <View className="w-full items-center z-[-10]">
           <Animated.Text  entering={FadeInUp.duration(1000)} className={`font-bold text-white ${height > 667 ? 'text-4xl mt-8' : 'text-2xl mt-4' } `}>{title}</Animated.Text>
         </View>
-        {location && (
-          <TouchableOpacity className={`bg-white z-20 border-gray-200 border w-full absolute  ${height > 667 ? 'bottom-[-35]' : 'bottom-[-44]' } items-center justify-center h-14 rounded-3xl px-4 flex flex-row space-x-2` }>
-            <Location width={20} height={20}/>
-            <Text className={`text-[#231f20] font-bold ${height > 667 ? 'text-lg' : 'text-md' }`}>
-              Santa Lucia, Oax
-            </Text>
-          </TouchableOpacity>
-        )}
       </View>
       {
         location ? (
