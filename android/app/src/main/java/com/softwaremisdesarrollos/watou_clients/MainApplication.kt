@@ -1,4 +1,4 @@
-package com.softwaremisdesarrollos.watou_clients
+package com.softwaremisdesarrollos.finai_clients
 
 import android.app.Application
 import android.content.res.Configuration

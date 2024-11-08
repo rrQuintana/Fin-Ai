@@ -36,12 +36,12 @@ export default function UpdatePassword() {
   }
 
   return (
-    <SafeAreaView className="bg-WaTou flex-1 items-center justify-center">
+    <SafeAreaView className="bg-finai flex-1 items-center justify-center">
       <View
         className="bg-white p-4 w-screen h-screen mt-32 items-center justify-start"
         style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}
       >
-        <Text className="text-WaTou text-center text-3xl font-semibold mt-10">
+        <Text className="text-finai text-center text-3xl font-semibold mt-10">
           Actualizar contraseña
         </Text>
         <View className="mt-6">
@@ -73,7 +73,7 @@ export default function UpdatePassword() {
         </View>
         <TouchableOpacity
           onPress={handleUpdatePassword}
-          className="bg-WaTou py-2 px-4 rounded-full mt-16"
+          className="bg-finai py-2 px-4 rounded-full mt-16"
         >
           <Text className="text-white mx-20 my-1 font-medium text-xl">
             Enviar

@@ -168,7 +168,7 @@ export default function EditProfile() {
 
           <TouchableOpacity
             onPress={handleSubmit(handleSignUp)}
-            className="bg-WaTou py-2 px-4 rounded-full mt-6"
+            className="bg-finai py-2 px-4 rounded-full mt-6"
           >
             <Text className="text-white mx-20 my-2 font-medium text-xl">
               Crear cuenta

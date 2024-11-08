@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        WaTou: "#1C759E",
+        finai: "#1C759E",
       },
     },
   },

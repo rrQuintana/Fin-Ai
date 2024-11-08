@@ -63,7 +63,7 @@ export default function SignUp() {
   }
 
   return (
-    <View className="bg-WaTou flex-1 items-center justify-center">
+    <View className="bg-finai flex-1 items-center justify-center">
       <ScrollView
         showsVerticalScrollIndicator={false}
         className="w-full"
@@ -84,7 +84,7 @@ export default function SignUp() {
             >
               <ArrowBack />
             </TouchableOpacity>
-            <Text className="text-WaTou text-center text-3xl font-semibold mb-2">
+            <Text className="text-finai text-center text-3xl font-semibold mb-2">
               Refréscate
             </Text>
             <View>
@@ -213,12 +213,12 @@ export default function SignUp() {
             </Text>
           )}
 
-          <Text className="text-WaTou w-80 mt-10 mb-4">
+          <Text className="text-finai w-80 mt-10 mb-4">
             Al registrarse usted acepta nuestros términos y condiciones{" "}
           </Text>
           <TouchableOpacity
             onPress={handleSubmit(handleSignUp)}
-            className="bg-WaTou py-2 px-4 rounded-full mt-6"
+            className="bg-finai py-2 px-4 rounded-full mt-6"
           >
             <Text className="text-white mx-20 my-2 font-medium text-xl">
               Crear cuenta

@@ -1,4 +1,4 @@
-rootProject.name = 'watou_clients'
+rootProject.name = 'finai_clients'
 
 dependencyResolutionManagement {
   versionCatalogs {

@@ -3,7 +3,7 @@ import { View, Text, Platform } from "react-native";
 import { PedidoCardInterface } from "@interfaces/pedidoCardInterface";
 import DestinationMarker from "@assets/icons/destinationMarker-Green.svg";
 import DashedLine from "@assets/icons/dashed-line.svg";
-import WatouLogo from "@assets/images/logoPlainBG.svg"
+import finaiLogo from "@assets/images/logoPlainBG.svg"
 
 export default function PedidoEnCursoCard(pedido: PedidoCardInterface) {
   return (
@@ -21,21 +21,21 @@ export default function PedidoEnCursoCard(pedido: PedidoCardInterface) {
                   {pedido.estatus}
                 </Text>
                 <View className=" flex flex-row items-center">
-                  <View className="bg-WaTou h-5 w-5 rounded-full"></View>
+                  <View className="bg-finai h-5 w-5 rounded-full"></View>
                   <DashedLine width={100}/>
                   <DestinationMarker />
                 </View>
               </View>
 
               <View className="self-start flex flex-row items-center space-x-2">
-                <WatouLogo width={28} height={28}/>
+                <finaiLogo width={28} height={28}/>
                 <Text className="text-gray-500">Conductor: Jorge</Text>
               </View>
             </View>
 
             <View className="flex w-2/5 justify-between">
               <View className="self-end">
-                <Text className="text-WaTou text-right text-lg font-bold">
+                <Text className="text-finai text-right text-lg font-bold">
                   MXN ${pedido.precio}
                 </Text>
               </View>

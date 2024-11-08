@@ -34,7 +34,7 @@ export default function PedidoCompletadoCard(pedido: PedidoCardInterface){
 
             <View className=" flex-1 w-1/2 justify-between">
               <View className="self-end">
-                <Text className="text-WaTou text-right text-lg font-bold">
+                <Text className="text-finai text-right text-lg font-bold">
                   MXN ${pedido.precio}
                 </Text>
               </View>

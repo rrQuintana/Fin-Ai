@@ -47,19 +47,19 @@ export default function ForgotPassword() {
 
   return (
     <SafeAreaView className="bg-gray-400 flex-1 items-center justify-center">
-      <View className="bg-WaTou p-4 w-screen h-screen mt-32 items-center justify-start" style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}>
+      <View className="bg-finai p-4 w-screen h-screen mt-32 items-center justify-start" style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}>
         <Text className="text-white text-center text-4xl font-semibold mt-10">
           ¿Olvidó su contraseña?
         </Text>
         <TextInput
-          className="bg-Watou w-80 h-14 border-b-2 border-white text-center text-white text-lg my-10 px-4"
+          className="bg-finai w-80 h-14 border-b-2 border-white text-center text-white text-lg my-10 px-4"
           placeholder="Correo electrónico"
           placeholderTextColor="#D0D0D0"
           value={username}
           onChangeText={setUsername}
         />
         <TouchableOpacity onPress={handleResetPassword} className="bg-white py-2 px-4 rounded-full mt-6">
-          <Text className="text-WaTou mx-20 my-1 font-medium text-xl">
+          <Text className="text-finai mx-20 my-1 font-medium text-xl">
             Enviar
           </Text>
         </TouchableOpacity>

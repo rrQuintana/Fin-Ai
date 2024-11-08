@@ -36,7 +36,7 @@ import {
       
     return (
       <SafeAreaView className="bg-gray-400 flex-1 items-center justify-center">
-      <View className="bg-WaTou p-4 w-screen h-screen mt-32 items-center justify-start" style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}>
+      <View className="bg-finai p-4 w-screen h-screen mt-32 items-center justify-start" style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}>
           <Text className="text-white text-center text-3xl font-semibold mt-10">
             Restaura tu contraseña
           </Text>
@@ -46,7 +46,7 @@ import {
           <TextInput
             value={confirmationCode}
             onChangeText={setConfirmationCode}
-            className="bg-Watou w-80 h-14 border-b-2 border-white text-center text-white text-lg my-6 px-4"
+            className="bg-finai w-80 h-14 border-b-2 border-white text-center text-white text-lg my-6 px-4"
             placeholder="Código de confirmación"
             placeholderTextColor='#D0D0D0'
             maxLength={6}
@@ -54,13 +54,13 @@ import {
           <TextInput
             value={newPassword}
             onChangeText={setNewPassword}
-            className="bg-Watou w-80 h-14 border-b-2 border-white text-center text-white text-lg my-4 px-4"
+            className="bg-finai w-80 h-14 border-b-2 border-white text-center text-white text-lg my-4 px-4"
             placeholder="Nueva contraseña"
             placeholderTextColor='#D0D0D0'
             secureTextEntry={true}
           />
           <TouchableOpacity onPress={handleConfirmResetPassword} className="bg-white py-2 px-4 rounded-full mt-6">
-            <Text className="text-WaTou mx-20 my-1 font-medium text-xl">Confirmar</Text>
+            <Text className="text-finai mx-20 my-1 font-medium text-xl">Confirmar</Text>
           </TouchableOpacity>
           <Email style={{ position: 'absolute', bottom:64, right: 8 }} />
         </View>

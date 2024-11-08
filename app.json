@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Watou",
-    "slug": "Watou",
+    "name": "finai",
+    "slug": "finai",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.watou-clients",
+      "bundleIdentifier": "com.finai-clients",
       "config": {
         "googleMapsApiKey": "AIzaSyAPZ9WUb4o9x3W2ngm3iqYzlM5qOuV_qAQ"
       }
@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#d7f7fa"
       },
-      "package": "com.softwaremisdesarrollos.watou_clients",
+      "package": "com.softwaremisdesarrollos.finai_clients",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyC0IiarrU2S1wsxhl0aylq-nf8w3wIXwfU"

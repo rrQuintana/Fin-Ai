@@ -13,11 +13,11 @@
     },
     "categories": {
       "auth": {
-        "watouwebsite": {},
+        "finaiwebsite": {},
         "finAIwonder": {}
       },
       "api": {
-        "watouwebsite": {}
+        "finaiwebsite": {}
       },
       "function": {
         "clientesFunction": {}

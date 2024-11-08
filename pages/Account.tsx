@@ -31,7 +31,7 @@ export default function Account() {
               source={DefaultProfileImage}
             />
             <View className="absolute bottom-0 right-0">
-              <TouchableOpacity className="bg-WaTou rounded-2xl px-2 py-1"
+              <TouchableOpacity className="bg-finai rounded-2xl px-2 py-1"
                 onPress={() => console.log('Cambiar Foto')}
               >
                 <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 12 }}>Cambiar</Text>
@@ -39,7 +39,7 @@ export default function Account() {
 
             </View>
           </View>
-          <Text className='text-WaTou' style={{ fontSize: 24, fontWeight: 'bold', marginTop: 10 }}>{username || "Usuario"}</Text>
+          <Text className='text-finai' style={{ fontSize: 24, fontWeight: 'bold', marginTop: 10 }}>{username || "Usuario"}</Text>
           <Text style={{ fontSize: 18, color: 'grey', marginTop: 5 }}>{email || "Correo no disponible"}</Text>
         </View>
         <View style={{ marginTop: 30 }}>

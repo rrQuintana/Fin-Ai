@@ -83,9 +83,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.softwaremisdesarrollos.watou_clients'
+    namespace 'com.softwaremisdesarrollos.finai_clients'
     defaultConfig {
-        applicationId 'com.softwaremisdesarrollos.watou_clients'
+        applicationId 'com.softwaremisdesarrollos.finai_clients'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
