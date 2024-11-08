@@ -6,7 +6,7 @@ type Props = {}
 
 const Card = ({ title, description, icon, onPress }: { title: string, description: string, icon: string, onPress: () => void }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} className='ms-4'>
       <View className='w-64 h-64 bg-gray-200 rounded-lg mr-4'>
         <View className='h-1/2 bg-black rounded-t-md justify-center items-center'>
           <Text className='text-6xl text-white'>{icon}</Text>
@@ -35,8 +35,8 @@ const DiscoverMore = ({title, data}) => {
   }
 
   return (
-    <View className='flex-1 px-4 mb-4'>
-      <Text className='text-2xl font-semibold mb-3'>{title}</Text>
+    <View className='flex-1 mb-4'>
+      <Text className='text-2xl font-semibold mb-3 px-4'>{title}</Text>
       <FlatList
         data={data}
         renderItem={({ item }) => <Card key={item.title} {...item} onPress={() => handleCardPress(item)} />}

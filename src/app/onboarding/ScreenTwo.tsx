@@ -123,8 +123,8 @@ export default function OnboardingForm() {
           <Ionicons name="arrow-back-sharp" size={20} />
         </TouchableOpacity>
         <View className="h-1 flex flex-row flex-1 mx-5">
-          <View style={{ width: progressWidth }} className="h-1 bg-black"></View>
-          <View className="h-1 w-1/2 bg-zinc-300"></View>
+          <View style={{ width: progressWidth - 80 }} className="h-1 bg-black" />
+          <View className="h-1 bg-zinc-300" style={{ width: width - progressWidth }} />
         </View>
       </View>
       <View className="px-4 flex flex-1">

@@ -13,17 +13,19 @@ type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <SafeAreaView className='flex px-4'>
+    <SafeAreaView className='flex'>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <NavBar />
-        <CreditCard />
-        <Options />
-        <Divider />
-        <RecentTransactions />
+        <View className="px-4">
+          <NavBar />
+          <CreditCard />
+          <Options />
+          <Divider />
+          <RecentTransactions />
+        </View>
         <Divider />
         <DiscoverMore title='Productos recomendados' data={investmentProducts} />
         <Divider />
-        <DiscoverMore title='Educación financiera'  data={learnData} />
+        <DiscoverMore title='Educación financiera' data={learnData} />
       </ScrollView>
     </SafeAreaView>
   )
