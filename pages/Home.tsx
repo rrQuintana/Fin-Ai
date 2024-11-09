@@ -9,7 +9,7 @@ import { investmentProducts, learnData } from "src/utils/learn"
 
 export default function Home() {
   return (
-    <PageLayout title="Mis finanzas" display={true}>
+    <PageLayout title="Finances" display={true}>
       <>
         <ScrollView
           contentContainerStyle={{
@@ -24,9 +24,9 @@ export default function Home() {
           <RecentTransactions />
           </View>
           <Divider />
-          <DiscoverMore title='Productos recomendados' data={investmentProducts} />
+          <DiscoverMore title='Investment products' data={investmentProducts} />
           <Divider />
-          <DiscoverMore title='Educación financiera' data={learnData} />
+          <DiscoverMore title='Financial Education' data={learnData} />
           </ScrollView>
       </>
     </PageLayout>

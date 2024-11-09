@@ -16,7 +16,7 @@ export enum Gender {
     SAVE = "Ahorrar",
     PAY_DEBT = "Pagar mis deudas",
     LEARN_INVESTING = "Aprender a invertir",
-    ORGANIZE_FINANCES = "Organizar mis finanzas",
+    ORGANIZE_FINANCES = "Organizar mis Finances",
     BUY_SOMETHING = "Comprar algo",
     BUILD_WEALTH = "Construir riqueza",
   }

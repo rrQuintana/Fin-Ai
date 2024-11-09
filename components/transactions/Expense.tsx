@@ -8,7 +8,7 @@ const Expense = ({ data }: {data: any}) => {
   const categories = groupExpencesByCategory(data);
 
   return (
-    <View className="px-2">
+    <View className="px-2 mt-2">
       <View className="flex flex-row justify-between items-center mb-4">
         <Text className="font-medium text-lg">Estado del mes</Text>
       </View>

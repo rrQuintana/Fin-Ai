@@ -26,105 +26,105 @@ const sampleData = [
     amount: 100,
     type: "Gasto",
     date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.COMPRAS_EN_LINEA],
+    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
   },
   {
     name: "Uber",
     amount: 50,
     type: "Gasto",
     date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORTE_Y_VEHICULOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
   },
   {
     name: "Salario",
     amount: 1000,
     type: "Ingreso",
     date: "2021-09-03",
-    category: ExpenseCategoryInfo[ExpenseCategory.AHORRO_E_INVERSION],
+    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
   },
   {
     name: "Spotify",
     amount: 10,
     type: "Gasto",
     date: "2021-09-04",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
   {
     name: "Netflix",
     amount: 150000,
     type: "Gasto",
     date: "2021-09-05",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
   {
     name: "Amazon",
     amount: 100,
     type: "Gasto",
     date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.COMPRAS_EN_LINEA],
+    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
   },
   {
     name: "Uber",
     amount: 50,
     type: "Gasto",
     date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORTE_Y_VEHICULOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
   },
   {
     name: "Salario",
     amount: 1000,
     type: "Ingreso",
     date: "2021-09-03",
-    category: ExpenseCategoryInfo[ExpenseCategory.AHORRO_E_INVERSION],
+    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
   },
   {
     name: "Spotify",
     amount: 10,
     type: "Gasto",
     date: "2021-09-04",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
   {
     name: "Netflix",
     amount: 15,
     type: "Gasto",
     date: "2021-09-05",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
   {
     name: "Amazon",
     amount: 100,
     type: "Gasto",
     date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.COMPRAS_EN_LINEA],
+    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
   },
   {
     name: "Uber",
     amount: 50,
     type: "Gasto",
     date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORTE_Y_VEHICULOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
   },
   {
     name: "Salario",
     amount: 1000,
     type: "Ingreso",
     date: "2021-09-03",
-    category: ExpenseCategoryInfo[ExpenseCategory.AHORRO_E_INVERSION],
+    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
   },
   {
     name: "Spotify",
     amount: 10,
     type: "Gasto",
     date: "2021-09-04",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
   {
     name: "Netflix",
     amount: 15,
     type: "Gasto",
     date: "2021-09-05",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
 ];
 
@@ -139,9 +139,9 @@ export default function Transaction() {
   const [newTransaction, setNewTransaction] = useState({
     name: "",
     amount: "",
-    type: "Gasto",
+    type: "Expense",
     date: "",
-    category: ExpenseCategoryInfo[ExpenseCategory.COMPRAS_EN_LINEA],
+    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
   });
 
   const handleInputChange = (field: any, value: string) => {
@@ -155,7 +155,7 @@ export default function Transaction() {
       amount: parseFloat(newTransaction.amount),
     });
     setModalVisible(false);
-    console.log("Transacción agregada:", newTransaction);
+    console.log("Transaction added:", newTransaction);
   };
 
   return (
@@ -191,6 +191,7 @@ export default function Transaction() {
           showsVerticalScrollIndicator={false}
         >
           <View className=" px-4">
+            <Expense data={sampleData} />
             <CustomTouchable
               text="Add transaction  +"
               color="#231f20"
@@ -198,7 +199,6 @@ export default function Transaction() {
               onPress={() => setModalVisible(true)}
             />
             <MySpending data={sampleData} />
-            <Expense data={sampleData} />
             <RecentActivity data={sampleData} />
 
             <Modal

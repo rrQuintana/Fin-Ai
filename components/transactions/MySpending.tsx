@@ -44,7 +44,7 @@ const MySpending = ({ data }: {data: any}) => {
   };
 
   return (
-    <View className="shadow bg-white px-5 rounded-md mb-8">
+    <View className="shadow bg-white px-5 rounded-3xl mb-8 mt-3">
       <View className='flex flex-row justify-center items-center'>
         <View className='me-2'>
           <Text>Mis gastos del mes</Text>

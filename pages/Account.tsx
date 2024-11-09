@@ -21,7 +21,7 @@ export default function Account() {
   const { navigate } = useNavigation<Nav>();
 
   return (
-    <PageLayoutButton title="Mi perfil" dontShowArrow={true}>
+    <PageLayoutButton title="My profile" dontShowArrow={true}>
       <Scroll className='w-5/6 mt-4 flex-1' showsVerticalScrollIndicator={false} contentInset={{ bottom: 100, top: 0 }}>
         <View className="items-center ">
           <View>
@@ -35,9 +35,9 @@ export default function Account() {
           <Text style={{ fontSize: 18, color: 'grey', marginTop: 5 }}>{email || ""}</Text>
         </View>
         <View style={{ marginTop: 30 }}>
-          <CustomTouchable text="Cambiar Contraseña" icon={Lock} onPress={() => navigate("UpdatePassword")} />
-          <CustomTouchable text="Soporte" icon={Support} />
-          <CustomTouchable text="Cerrar sesión" icon={LogOut} onPress={signOut}/>
+          <CustomTouchable text="Update Password" icon={Lock} onPress={() => navigate("UpdatePassword")} />
+          <CustomTouchable text="Support" icon={Support} />
+          <CustomTouchable text="Sign Out" icon={LogOut} onPress={signOut}/>
         </View>
       </Scroll>
     </PageLayoutButton>

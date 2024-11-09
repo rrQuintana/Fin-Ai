@@ -11,16 +11,16 @@ const sampleData = [
   {
     name: "Amazon",
     amount: 100,
-    type: "Gasto",
+    type: "Expense",
     date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.COMPRAS_EN_LINEA],
+    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
   },
   {
     name: "Uber",
     amount: 50,
-    type: "Gasto",
+    type: "Expense",
     date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORTE_Y_VEHICULOS],
+    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
   },
   // {
   //   name: "Salario",
@@ -56,9 +56,11 @@ const RecentTransactions = () => {
     <View className="max-h-1/5">
       {/* Header */}
       <View className="flex flex-row justify-between items-center mb-4">
-        <Text className="font-medium text-lg">Actividad reciente</Text>
+        <Text className="font-medium text-lg">
+          Recent Transactions
+        </Text>
         <TouchableOpacity onPress={() => navigate("TransactionsStack")}>
-          <Text className="text-zinc-500 text-sm">Ver detalles {">"}</Text>
+          <Text className="text-zinc-500 text-sm">Details {">"}</Text>
         </TouchableOpacity>
       </View>
 
@@ -67,7 +69,7 @@ const RecentTransactions = () => {
         {sampleData.map((transaction, index) => (
           <TouchableOpacity
             key={index}
-            className="flex flex-row items-center justify-between p-3 mb-3 bg-white rounded-lg shadow-sm"
+            className="flex flex-row items-center justify-between p-3 mb-3 bg-white rounded-3xl shadow-sm"
           >
             {/* Category Icon */}
             <View className="bg-zinc-200 p-3 rounded-full items-center justify-center">
@@ -91,10 +93,10 @@ const RecentTransactions = () => {
             {/* Amount */}
             <Text
               className={`${
-                transaction.type === "Gasto" ? "text-red-500" : "text-green-500"
+                transaction.type === "Expense" ? "text-red-500" : "text-green-500"
               } font-semibold text-right`}
             >
-              {transaction.type === "Gasto" ? "-" : "+"} ${transaction.amount}
+              {transaction.type === "Expense" ? "-" : "+"} ${transaction.amount}
             </Text>
           </TouchableOpacity>
         ))}

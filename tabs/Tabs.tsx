@@ -59,7 +59,7 @@ export default function Tabs() {
             <CustomItemTab
               focused={focused}
               iconName={"home"}
-              labelText="Finanzas"
+              labelText="Finances"
             />
           ),
         }}

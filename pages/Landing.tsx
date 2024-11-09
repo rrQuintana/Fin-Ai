@@ -11,27 +11,27 @@ export default function Landing() {
   return (
     <View className="bg-[#231f20]}">
       <OnboardFlow pages={[
-        {
-          title: 'Define tus Metas Financieras',
-          subtitle: 'Establece objetivos claros, como ahorrar para una casa o prepararte para el retiro. Nuestro asistente financiero te ayudará a crear un plan personalizado para alcanzar cada meta.',
-          imageUri: Image.resolveAssetSource(goals).uri
-          
-        },
-        {
-          title: 'Recibe Recomendaciones Inteligentes',
-          subtitle: 'Descubre productos financieros y consejos personalizados para mejorar tu situación financiera. La app analiza tus hábitos y necesidades para ofrecerte la mejor orientación.',
-          imageUri: Image.resolveAssetSource(payment).uri
-        },
-        {
-          title: 'Monitorea tu Progreso y Mantente Enfocado',
-          subtitle: 'Con herramientas de seguimiento y alertas en tiempo real, podrás ver cómo avanzas hacia tus metas y recibir recordatorios para mantenerte en el camino.',
-          imageUri: Image.resolveAssetSource(progress).uri
-        }
+      {
+        title: 'Define Your Financial Goals',
+        subtitle: 'Set clear objectives, like saving for a house or preparing for retirement. Our financial assistant will help you create a personalized plan to achieve each goal.',
+        imageUri: Image.resolveAssetSource(goals).uri
+        
+      },
+      {
+        title: 'Receive Smart Recommendations',
+        subtitle: 'Discover financial products and personalized advice to improve your financial situation. The app analyzes your habits and needs to offer the best guidance.',
+        imageUri: Image.resolveAssetSource(payment).uri
+      },
+      {
+        title: 'Monitor Your Progress and Stay Focused',
+        subtitle: 'With tracking tools and real-time alerts, you can see how you are progressing towards your goals and receive reminders to stay on track.',
+        imageUri: Image.resolveAssetSource(progress).uri
+      }
       ]}
-        type='bottom-sheet' paginationColor="#000000" 
-        paginationSelectedColor="#231f20" 
-        primaryButtonStyle={{ backgroundColor: '#231f20'}} 
-        titleStyle={{ color: '#231f20'}} 
+      type='bottom-sheet' paginationColor="#000000" 
+      paginationSelectedColor="#231f20" 
+      primaryButtonStyle={{ backgroundColor: '#231f20'}} 
+      titleStyle={{ color: '#231f20'}} 
       />
     </View>
   );

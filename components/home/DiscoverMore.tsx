@@ -6,9 +6,9 @@ type Props = {}
 
 const Card = ({ title, description, icon, onPress }: { title: string, description: string, icon: any, onPress: () => void }) => {
   return (
-    <TouchableOpacity onPress={onPress} className='ms-4'>
-      <View className='w-64 h-64 bg-gray-200 rounded-lg mr-4'>
-        <View className='h-1/2 bg-black rounded-t-md justify-center items-center'>
+    <TouchableOpacity onPress={onPress} className='ml-4'>
+      <View className='w-64 h-64 bg-gray-200 rounded-3xl mr-4'>
+        <View className='h-1/2 bg-black rounded-t-3xl justify-center items-center'>
           <Text className='text-6xl text-white'>{icon}</Text>
         </View>
         <View className='h-1/2 p-3'>

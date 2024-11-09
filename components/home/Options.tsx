@@ -5,17 +5,17 @@ import { OptionProps } from '@interfaces/optionsInterface';
 
 const options = [
   {
-    name: 'Movimientos',
+    name: 'Transactions',
     icon: 'card',
     route: 'Transactions'
   },
   {
-    name: 'Presupuestos',
+    name: 'Budgets',
     icon: 'wallet',
     route: 'Budgets'
   },
   {
-    name: 'Recordatorios',
+    name: 'Reminders',
     icon: 'notifications',
     route: 'Reminders'
   },

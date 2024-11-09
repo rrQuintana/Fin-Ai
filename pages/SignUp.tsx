@@ -85,14 +85,14 @@ export default function SignUp() {
               <ArrowBack />
             </TouchableOpacity>
             <Text className="text-[#231f20] text-center text-3xl font-semibold mb-2">
-              Registrate
+              Sign Up
             </Text>
             <View>
               <ArrowBack style={{ opacity: 0 }} />
             </View>
           </View>
           <Text className="text-black text-center text-md font-medium mb-6">
-            Mejora tus finanzas personales
+            Start making better financial decisions
           </Text>
           <Controller
             name="username"
@@ -104,14 +104,14 @@ export default function SignUp() {
               <CustomInput
                 value={value}
                 onChangeText={onChange}
-                placeholder="Correo electrónico"
+                placeholder="Email"
                 icon={Mail}
               />
             )}
           />
           {errors.username && (
             <Text className="text-start w-80 text-red-500">
-              Campo requerido.
+              Required field
             </Text>
           )}
 
@@ -128,7 +128,7 @@ export default function SignUp() {
               <CustomInput
                 value={value}
                 onChangeText={onChange}
-                placeholder="Contraseña"
+                placeholder="Password"
                 secureTextEntry
                 icon={Lock}
               />
@@ -137,11 +137,11 @@ export default function SignUp() {
 
           {errors.password && (
             <Text className="text-start w-80 text-red-500">
-              {errors.password.type === "required" && "Campo requerido."}
+              {errors.password.type === "required" && "Required field"}
               {errors.password.type === "minLength" &&
-                "La contraseña debe tener al menos 8 caracteres."}
+              "Password must be at least 8 characters long."}
               {errors.password.type === "pattern" &&
-                "La contraseña debe contener al menos una minúscula, una mayúscula, un número y un carácter especial."}
+              "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character."}
             </Text>
           )}
 
@@ -153,14 +153,14 @@ export default function SignUp() {
               validate: {
                 matchesPreviousPassword: (value) =>
                   value === getValues("password") ||
-                  "Las contraseñas no coinciden",
+                  "Passwords do not match.",
               },
             }}
             render={({ field: { onChange, value } }) => (
               <CustomInput
                 value={value}
                 onChangeText={onChange}
-                placeholder="Confirmar contraseña"
+                placeholder="Confirm Password"
                 secureTextEntry
                 icon={Lock}
               />
@@ -181,7 +181,7 @@ export default function SignUp() {
               <CustomInput
                 value={value}
                 onChangeText={onChange}
-                placeholder="Nombre Completo"
+                placeholder="Full Name"
                 icon={User}
               />
             )}
@@ -189,7 +189,7 @@ export default function SignUp() {
 
           {errors.name && (
             <Text className="text-start w-80 text-red-500">
-              Campo requerido.
+              Required field
             </Text>
           )}
 
@@ -201,7 +201,7 @@ export default function SignUp() {
               <CustomInput
                 value={value}
                 onChangeText={onChange}
-                placeholder="Teléfono mexicano (10 dígitos)"
+                placeholder="Mexican Phone Number (10 digits)"
                 icon={User}
               />
             )}
@@ -209,19 +209,19 @@ export default function SignUp() {
 
           {errors.phone && (
             <Text className="text-start w-80 text-red-500">
-              Campo requerido.
+              Required field
             </Text>
           )}
 
           <Text className="text-[#231f20] w-80 mt-10 mb-4">
-            Al registrarse usted acepta nuestros términos y condiciones{" "}
+            By signing up, you agree to our Terms of Service and Privacy Policy{" "}
           </Text>
           <TouchableOpacity
             onPress={handleSubmit(handleSignUp)}
             className="bg-[#231f20] py-2 px-4 rounded-full mt-6"
           >
             <Text className="text-white mx-20 my-2 font-medium text-xl">
-              Crear cuenta
+              Create Account
             </Text>
           </TouchableOpacity>
         </TouchableOpacity>

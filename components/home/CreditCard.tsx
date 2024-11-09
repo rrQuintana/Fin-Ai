@@ -40,11 +40,13 @@ export default function CreditCard() {
             <View className="w-3/4 h-full bg-green-500" />
             <View className="w-2/4 h-full bg-zinc-500" />
           </View>
-          <Text className="text-white text-xs text-center">75% de tu meta mensual</Text>
+          <Text className="text-white text-xs text-center">
+            75% of your monthly budget
+          </Text>
         </View>
         <View className="w-full flex flex-row justify-between mt-2 p-2 items-center">
-          <Icon positive title="Ingresos" value="123,456.78" />
-          <Icon positive={false} title="Gastos" value="123,456.78" />
+          <Icon positive title="Income" value="123,456.78" />
+          <Icon positive={false} title="Expenses" value="123,456.78" />
         </View>
       </View>
     </LinearGradient>

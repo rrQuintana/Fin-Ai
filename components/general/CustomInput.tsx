@@ -11,7 +11,7 @@ export default function CustomInput({
   inputMode
 }: CustomInputProps) {
   return (
-    <View className="bg-white border-gray-200 rounded-3xl border w-80 flex flex-row items-center justify-evenly mt-10">
+    <View className="bg-white border-gray-200 rounded-3xl border w-80 flex flex-row items-center justify-evenly mt-8">
       <TextInput
         autoCapitalize="none"
         placeholderTextColor={"gray"}
