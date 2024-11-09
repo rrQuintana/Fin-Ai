@@ -8,14 +8,15 @@ export default function CustomInput({
   secureTextEntry,
   icon: Icon,
   keyboardType,
-  inputMode
+  inputMode,
+  fixedSize,
 }: CustomInputProps) {
   return (
-    <View className="bg-white border-gray-200 rounded-3xl border w-80 flex flex-row items-center justify-evenly mt-8">
+    <View className={`bg-white border-gray-200 rounded-3xl border ${fixedSize ? 'p-4 my-2': 'w-80 flex flex-row items-center justify-evenly mt-8'} `}>
       <TextInput
         autoCapitalize="none"
         placeholderTextColor={"gray"}
-        className=" w-64 h-14 px-4"
+        className={`${fixedSize ? '' :'w-64 h-14 px-4'}`}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}

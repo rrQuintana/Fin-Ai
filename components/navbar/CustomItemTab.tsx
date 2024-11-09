@@ -9,9 +9,9 @@ export default function CustomItemTab({ focused, iconName, labelText }: CustomIt
   const icon = imageMapping[iconName];
 
   return (
-    <View style={{ ...customViewTab, backgroundColor: focused ? "#403e3e" : "#231f20", flexDirection: 'row', alignItems: 'center' }}>
+    <View style={{ ...customViewTab, backgroundColor: focused ? "#403e3e" : "#231f20", flexDirection: 'row', alignItems: 'center', marginRight: 10 }}>
       {icon}
-      {focused && <Text style={{ color: 'white', marginLeft: 8 }}>{labelText}</Text>}
+      {focused && <Text style={{ color: 'white', marginLeft: 3 }}>{labelText}</Text>}
     </View>
   );
 }

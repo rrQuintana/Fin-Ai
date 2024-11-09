@@ -19,6 +19,7 @@ import {
 import Expense from "@components/transactions/Expense";
 import RecentActivity from "@components/transactions/RecentActivity";
 import CustomTouchable from "@components/general/CustomTouchable";
+import CustomInput from "@components/general/CustomInput";
 
 const sampleData = [
   {
@@ -203,7 +204,7 @@ export default function Transaction() {
 
             <Modal
               visible={modalVisible}
-              animationType="slide"
+              animationType="fade"
               transparent={true}
               onRequestClose={() => setModalVisible(false)}
             >
@@ -226,39 +227,41 @@ export default function Transaction() {
                     shadowOpacity: 0.25,
                     shadowRadius: 4,
                   }}
+                  className=" rounded-3xl"
                 >
-                  <Text className="text-xl text-center mb-4">
-                    Agregar Transacción
+                  <Text className="text-xl text-center font mb-4">
+                    New transaction
                   </Text>
-
-                  <TextInput
-                    placeholder="Nombre"
+                  <CustomInput
+                    placeholder="Name"
                     value={newTransaction.name}
                     onChangeText={(text) => handleInputChange("name", text)}
-                    className="border-zinc-300 rounded-lg border p-4 mb-2"
+                    fixedSize={true}
                   />
-                  <TextInput
-                    placeholder="Monto"
+                  <CustomInput
+                    placeholder="Amount"
                     keyboardType="numeric"
                     value={newTransaction.amount}
                     onChangeText={(text) => handleInputChange("amount", text)}
-                    className="border-zinc-300 rounded-lg border p-4 mb-2"
+                    fixedSize={true}
                   />
-                  <TextInput
-                    placeholder="Fecha"
+                  <CustomInput
+                    placeholder="Date"
                     value={newTransaction.date}
                     onChangeText={(text) => handleInputChange("date", text)}
-                    className="border-zinc-300 rounded-lg border p-4 mb-2"
+                    fixedSize={true}
                   />
-
-                  <Button
-                    title="Agregar"
+                  <CustomTouchable
+                    color="#231f20"
+                    text="Add transaction"
+                    whiteText={true}
                     onPress={() => setModalVisible(false)}
                   />
-                  <Button
-                    title="Cancelar"
+                  <CustomTouchable
+                    color="#ad2000"
+                    whiteText={true}
+                    text="Cancel"
                     onPress={() => setModalVisible(false)}
-                    color="red"
                   />
                 </View>
               </View>

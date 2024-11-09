@@ -46,7 +46,7 @@ export default function Tabs() {
             <CustomItemTab
               focused={focused}
               iconName={"person"}
-              labelText="Perfil"
+              labelText="Profile"
             />
           ),
         }}
@@ -58,7 +58,7 @@ export default function Tabs() {
           tabBarIcon: ({ focused }) => (
             <CustomItemTab
               focused={focused}
-              iconName={"home"}
+              iconName={"money"}
               labelText="Finances"
             />
           ),
@@ -72,7 +72,7 @@ export default function Tabs() {
             <CustomItemTab
               focused={focused}
               iconName={"pin"}
-              labelText="Otros"
+              labelText="Transactions"
             />
           ),
         }}
