@@ -13,6 +13,7 @@ export interface CustomInputProps {
 export interface CustomTouchableProps {
     onPress?: () => void;
     text: string;
+    whiteText?: boolean;
     icon?: React.ComponentType<any>;
     color?: string;
 }

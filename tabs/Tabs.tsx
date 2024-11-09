@@ -5,7 +5,7 @@ import CustomItemTab from "@components/navbar/CustomItemTab";
 import { ViewStyle } from "react-native";
 import HomeScreenStack from "@stacks/HomeScreenStack";
 import AccountScreenStack from "@stacks/AccountScreenStack";
-import MapsScreenStack from "@stacks/MapsScreenStack";
+import MapsScreenStack from "@stacks/TransactionsScreenStack";
 import { useOnboardingStatus } from "src/hooks/useOnboardingStatus";
 import OnboardingForm from "@pages/Onboarding";
 import { setOnboardingStatus } from "@hooks/useOnboardingStatus";
@@ -65,7 +65,7 @@ export default function Tabs() {
         }}
       />
       <Tab.Screen
-        name="MapsStack"
+        name="TransactionsStack"
         component={MapsScreenStack}
         options={{
           tabBarIcon: ({ focused }) => (

@@ -1,36 +1,26 @@
 import { View, Text, TouchableOpacity, useWindowDimensions } from "react-native";
 import { LayoutInterface } from "@interfaces/pageLayoutInterfaces";
-import Location from "@assets/images/location.svg"
-import Animated, {FadeInUp} from "react-native-reanimated"
 export default function PageLayout({
   children,
   title,
-  location,
+  display,
 }: LayoutInterface) {
 
   const { height } = useWindowDimensions();
   
   return (
-    <View className="bg-white flex-1">
+    <View className="bg-white h-screen overflow-hidden">
       <View
-        style={location ? { borderBottomLeftRadius: 30, borderBottomRightRadius: 30 } : { borderBottomLeftRadius: 50, borderBottomRightRadius: 50 }}
-        className={`bg-[#231f20] w-full ${height > 667 ? 'h-44' : 'h-24' } px-6  justify-center items-center`}
+        style={{borderBottomLeftRadius: 50, borderBottomRightRadius: 50 }}
+        className={`bg-[#231f20] w-full h-32 px-6 justify-center items-center ${!display ? 'hidden' : ''}`}
       >
-        <View className="w-full items-center" style={{ zIndex: 1 }}>
+        <View className="w-full items-center">
           <Text className={`font-bold text-white ${height > 667 ? 'text-4xl mt-8' : 'text-2xl mt-4' } `}>{title}</Text>
         </View>
       </View>
-      {
-        location ? (
-          <View className="pt-14 flex-1 items-center justify-start">
-            {children}
-          </View>
-        ) : (
-          <View className="pt-4 flex-1 items-center justify-start">
-            {children}
-          </View>
-        )
-      }
+      <View className="pt-4">
+        {children}
+      </View>
     </View>
   );
 }
