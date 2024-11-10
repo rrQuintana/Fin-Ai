@@ -1,6 +1,6 @@
 import { ScrollView, View, Text } from "react-native";
 import PageLayout from "@components/layout/PageLayout";
-import CreditCard from "@components/home/CreditCard";
+import FinancialCard from "@components/home/FinancialCard";
 import Options from "@components/home/Options";
 import Divider from "@components/general/Divider";
 import RecentTransactions from "@components/home/RecentTransactions";
@@ -18,7 +18,7 @@ export default function Home() {
           showsVerticalScrollIndicator={false}
         >
           <View className="px-4">
-          <CreditCard />
+          <FinancialCard />
           <Options />
           <Divider />
           <RecentTransactions />

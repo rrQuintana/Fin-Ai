@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "@pages/Home";
-import OnboardingForm from "@pages/Onboarding";
+import Cards from "@pages/Cards";
 
 const HomeStack = createNativeStackNavigator();
 
@@ -12,6 +12,7 @@ function HomeScreenStack() {
       }}
     >
       <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="Cards" component={Cards}/>
     </HomeStack.Navigator>
   );
 }
