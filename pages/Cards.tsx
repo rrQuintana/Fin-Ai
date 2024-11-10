@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
+import CustomDropdown from "@components/general/CustomDropdown";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CreditCard from "@components/home/CreditCard";
-import { CreditCardInterface } from "@interfaces/CreditCardInterface";
+import { CreditCardInterface, MonthDays, ColorOptions } from "@interfaces/CreditCardInterface";
 import DebitAccount from "@components/home/DebitAccount";
 import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import CustomInput from "@components/general/CustomInput";
@@ -47,7 +48,6 @@ const cards: CreditCardInterface[] = [
     color: "gray",
   },
 ];
-
 const accounts: DebitAccountInterface[] = [
   {
     bankName: "Chase",
@@ -91,13 +91,47 @@ export default function Cards() {
     balance: 0,
   });
 
+  const clearForm = () => {
+    setNewCard({
+      bankName: "",
+      type: "Credit",
+      cardName: "",
+      usedCredit: 0,
+      statementClosingDate: 0,
+      paymentDueDate: 0,
+    });
+    setNewAccount({
+      bankName: "",
+      accountName: "",
+      balance: 0,
+    });
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    clearForm();
+  };
+
+  const createCard = () => {
+    newCard.usedCredit = parseFloat(newCard.usedCredit.toString());
+    newCard.creditLimit = parseFloat((newCard.creditLimit ?? 0).toString());
+    cards.push(newCard);
+    closeModal();
+  }
+
+  const createAccount = () => {
+    newAccount.balance = parseFloat(newAccount.balance.toString());
+    accounts.push(newAccount);
+    closeModal();
+  }
+
   return (
     <SafeAreaView className="bg-[#231f20] flex-1 items-center justify-center">
       <Modal
         visible={modalVisible}
         animationType="fade"
         transparent={true}
-        onRequestClose={() => setModalVisible(false)}
+        onRequestClose={closeModal}
       >
         <View
           style={{
@@ -129,7 +163,7 @@ export default function Cards() {
                 New {selectedOption === "Cards" ? "card" : "account"}
               </Text>
               <TouchableOpacity
-                onPress={() => setModalVisible(false)}
+                onPress={closeModal}
                 className="h-10 items-center justify-center"
               >
                 <Text className="text-[#231f20] text-xl">X</Text>
@@ -141,22 +175,41 @@ export default function Cards() {
                   <CustomRadio isSmall option1="Credit" option2="Charge" onPressOption1={() => setNewCard({ ...newCard, type: "Credit" })} onPressOption2={() => setNewCard({ ...newCard, type: "Charge" })} />
                   <CustomInput placeholder="Bank Name" value={newCard.bankName} onChangeText={(text) => setNewCard({ ...newCard, bankName: text })} fixedSize={true} />
                   <CustomInput placeholder="Card Name" value={newCard.cardName} onChangeText={(text) => setNewCard({ ...newCard, cardName: text })} fixedSize={true} />
-                  <CustomInput placeholder="Used Credit" value={newCard.usedCredit} onChangeText={(text) => setNewCard({ ...newCard, usedCredit: text })} fixedSize={true} />
-                  <CustomInput placeholder="Statement Closing Date" value={newCard.statementClosingDate.toString()} onChangeText={(text) => setNewCard({ ...newCard, statementClosingDate: parseInt(text) })} fixedSize={true} />
-                  <CustomInput placeholder="Payment Due Date" value={newCard.paymentDueDate.toString()} onChangeText={(text) => setNewCard({ ...newCard, paymentDueDate: parseInt(text) })} fixedSize={true} />
+                  <CustomInput placeholder="Used Credit" value={newCard.usedCredit} onChangeText={(text) => setNewCard({ ...newCard, usedCredit: text })} fixedSize={true} keyboardType="numeric"/>
+                  { newCard.type === "Credit" && <CustomInput placeholder="Credit Limit" value={newCard.creditLimit} onChangeText={(text) => setNewCard({ ...newCard, creditLimit: text })} fixedSize={true}  keyboardType="numeric"/> }
+                  <CustomDropdown
+                    data={MonthDays}
+                    onChange={(value) => setNewCard({ ...newCard, statementClosingDate: value.value })}
+                    placeholder="Statement Closing Date"
+                  />
+                  <CustomDropdown
+                    data={MonthDays}
+                    onChange={(value) => setNewCard({ ...newCard, paymentDueDate: value.value })}
+                    placeholder="Payment Due Date"
+                  />
+                  <CustomDropdown
+                    data={ColorOptions}
+                    onChange={(value) => setNewAccount({ ...newAccount, color: value.value })}
+                    placeholder="Color"
+                  />
                 </>
               ) : (
                 <>
                   <CustomInput placeholder="Bank Name" value={newAccount.bankName} onChangeText={(text) => setNewAccount({ ...newAccount, bankName: text })} fixedSize={true} />
                   <CustomInput placeholder="Account Name" value={newAccount.accountName} onChangeText={(text) => setNewAccount({ ...newAccount, accountName: text })} fixedSize={true} />
-                  <CustomInput placeholder="Balance" value={newAccount.balance} onChangeText={(text) => setNewAccount({ ...newAccount, balance: text })} fixedSize={true} />
+                  <CustomInput placeholder="Balance" value={newAccount.balance} onChangeText={(text) => setNewAccount({ ...newAccount, balance: text })} fixedSize={true} keyboardType="numeric" />
+                  <CustomDropdown
+                    data={ColorOptions}
+                    onChange={(value) => setNewAccount({ ...newAccount, color: value.value })}
+                    placeholder="Color"
+                  />
                 </>
               )}
             <CustomTouchable
               color="#231f20"
               text={`Add ${selectedOption === "Cards" ? "card" : "account"}`}
               whiteText={true}
-              onPress={() => setModalVisible(false)}
+              onPress={selectedOption === "Cards" ? createCard : createAccount}
             />
           </View>
         </View>

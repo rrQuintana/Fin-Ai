@@ -26,9 +26,12 @@ const cardColorTranslator = (color: string) => {
 const DebitAccount = ({ account, index }: DebitAccountProps) => {
   const color = cardColorTranslator(account.color || "black");
 
-  const formatCurrency = (amount: number) => {
+  function formatCurrency(amount: number | undefined) {
+    if (typeof amount !== "number") {
+      return "$0.00";
+    }
     return `$${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
-  };
+  }
 
   return (
     <View key={index} className={`${color} p-4 my-2 rounded-3xl`}>
