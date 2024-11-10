@@ -54,3 +54,23 @@ export const ExpenseCategoryInfo = {
   [ExpenseCategory.ALTERNATIVE_INVESTMENTS]: { name: 'Alternative Investments', icon: 'globe' },
   [ExpenseCategory.EMERGENCY_FUND]: { name: 'Emergency Fund', icon: 'shield' },
 }
+
+export enum IncomeCategory {
+  SALARY = 'SALARY',
+  INVESTMENTS = 'INVESTMENTS',
+  TRANSFERS = 'TRANSFERS',
+  SIDE_HUSTLES = 'SIDE_HUSTLES',
+  GIFTS = 'GIFTS',
+  REFUNDS = 'REFUNDS',
+  OTHER = 'OTHER',
+}
+
+export const IncomeCategoryInfo = {
+  [IncomeCategory.SALARY]: { name: 'Salary', icon: 'wallet' },
+  [IncomeCategory.INVESTMENTS]: { name: 'Investments', icon: 'bar-chart' },
+  [IncomeCategory.TRANSFERS]: { name: 'Transfers', icon: 'repeat' },
+  [IncomeCategory.SIDE_HUSTLES]: { name: 'Side Hustles', icon: 'cash' },
+  [IncomeCategory.GIFTS]: { name: 'Gifts', icon: 'gift' },
+  [IncomeCategory.REFUNDS]: { name: 'Refunds', icon: 'cash' },
+  [IncomeCategory.OTHER]: { name: 'Other', icon: 'cash' },
+}

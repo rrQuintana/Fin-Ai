@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { ExpenseCategory, ExpenseCategoryInfo } from '@src/types/ExpenseCategory';
 import { BarChart } from 'react-native-chart-kit';
 import { generateChartDataFromGroupedTransactions, groupTransactionsByDate } from '@src/utils/groupTransactions';
 

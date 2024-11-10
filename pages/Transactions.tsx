@@ -1,12 +1,8 @@
 import {
   View,
   Text,
-  SafeAreaView,
   ScrollView,
-  TouchableOpacity,
   Modal,
-  TextInput,
-  Button,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import PageLayout from "@components/layout/PageLayout";
@@ -15,117 +11,72 @@ import MySpending from "@components/transactions/MySpending";
 import {
   ExpenseCategory,
   ExpenseCategoryInfo,
+  IncomeCategory,
+  IncomeCategoryInfo,
 } from "@src/types/ExpenseCategory";
 import Expense from "@components/transactions/Expense";
 import RecentActivity from "@components/transactions/RecentActivity";
 import CustomTouchable from "@components/general/CustomTouchable";
 import CustomInput from "@components/general/CustomInput";
+import CustomRadio from "@components/general/CustomRadio";
+import { TransactionInterface, TransactionProps } from "@interfaces/TransactionInterface";
 
-const sampleData = [
+const sampleTransactions: TransactionInterface[] = [
   {
     name: "Amazon",
     amount: 100,
     type: "Expense",
     date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
-  },
-  {
-    name: "Uber",
-    amount: 50,
-    type: "Expense",
-    date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
+    category: ExpenseCategoryInfo.ONLINE_SHOPPING,
   },
   {
     name: "Salario",
     amount: 1000,
     type: "Income",
     date: "2021-09-03",
-    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
+    category: IncomeCategoryInfo.SALARY,
+  },
+  {
+    name: "Freelance",
+    amount: 500,
+    type: "Income",
+    date: "2021-09-03",
+    category: IncomeCategoryInfo.SIDE_HUSTLES,
+  },
+  {
+    name: "Uber",
+    amount: 50,
+    type: "Expense",
+    date: "2021-09-02",
+    category: ExpenseCategoryInfo.TRANSPORT_AND_VEHICLES,
+  },
+  {
+    name: "Salario",
+    amount: 1000,
+    type: "Income",
+    date: "2021-09-03",
+    category: ExpenseCategoryInfo.SAVINGS_AND_INVESTMENT,
   },
   {
     name: "Spotify",
     amount: 10,
     type: "Expense",
     date: "2021-09-04",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
+    category: ExpenseCategoryInfo.SUBSCRIPTIONS_AND_SERVICES,
   },
   {
     name: "Netflix",
     amount: 150000,
     type: "Expense",
     date: "2021-09-05",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
+    category: ExpenseCategoryInfo.SUBSCRIPTIONS_AND_SERVICES,
   },
   {
     name: "Amazon",
     amount: 100,
     type: "Expense",
     date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
-  },
-  {
-    name: "Uber",
-    amount: 50,
-    type: "Expense",
-    date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
-  },
-  {
-    name: "Salario",
-    amount: 1000,
-    type: "Income",
-    date: "2021-09-03",
-    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
-  },
-  {
-    name: "Spotify",
-    amount: 10,
-    type: "Expense",
-    date: "2021-09-04",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
-  },
-  {
-    name: "Netflix",
-    amount: 15,
-    type: "Expense",
-    date: "2021-09-05",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
-  },
-  {
-    name: "Amazon",
-    amount: 100,
-    type: "Expense",
-    date: "2021-09-01",
-    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
-  },
-  {
-    name: "Uber",
-    amount: 50,
-    type: "Expense",
-    date: "2021-09-02",
-    category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
-  },
-  {
-    name: "Salario",
-    amount: 1000,
-    type: "Income",
-    date: "2021-09-03",
-    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
-  },
-  {
-    name: "Spotify",
-    amount: 10,
-    type: "Expense",
-    date: "2021-09-04",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
-  },
-  {
-    name: "Netflix",
-    amount: 15,
-    type: "Expense",
-    date: "2021-09-05",
-    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
+    category: ExpenseCategoryInfo.ONLINE_SHOPPING,
   },
 ];
 
@@ -137,26 +88,44 @@ export default function Transaction() {
   const { navigate } = useNavigation<Nav>();
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [newTransaction, setNewTransaction] = useState({
+  const [newExpense, setNewExpense] = useState<TransactionInterface>({
     name: "",
-    amount: "",
+    amount: 0,
     type: "Expense",
     date: "",
-    category: ExpenseCategoryInfo[ExpenseCategory.ONLINE_SHOPPING],
+    category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+  });
+  const [newIncome, setNewIncome] = useState<TransactionInterface>({
+    name: "",
+    amount: 0,
+    type: "Income",
+    date: "",
+    category: IncomeCategoryInfo.SALARY,
   });
 
-  const handleInputChange = (field: any, value: string) => {
-    setNewTransaction({ ...newTransaction, [field]: value });
-  };
+  const handleExpenseChange = (key: string, value: string) => {
+    setNewExpense({ ...newExpense, [key]: value });
+  }
 
-  const handleSubmit = () => {
-    sampleData.push({
-      ...newTransaction,
-      amount: parseFloat(newTransaction.amount),
+  const handleIncomeChange = (key: string, value: string) => {
+    setNewIncome({ ...newIncome, [key]: value });
+  }
+
+  const handleAddExpense = () => {
+    sampleExpenses: sampleTransactions.push({
+      ...newExpense,
+      amount: newExpense.amount,
     });
     setModalVisible(false);
-    console.log("Transaction added:", newTransaction);
-  };
+  }
+
+  const handleAddIncome = () => {
+    sampleExpenses: sampleTransactions.push({
+      ...newIncome,
+      amount: newIncome.amount,
+    });
+    setModalVisible(false);
+  }
 
   return (
     <PageLayout title="Transactions" display={true}>
@@ -191,15 +160,15 @@ export default function Transaction() {
           showsVerticalScrollIndicator={false}
         >
           <View className=" px-4">
-            <Expense data={sampleData} />
+            <Expense data={sampleTransactions}/>
             <CustomTouchable
               text="Add transaction  +"
               color="#231f20"
               whiteText={true}
               onPress={() => setModalVisible(true)}
             />
-            <MySpending data={sampleData} />
-            <RecentActivity data={sampleData} />
+            <MySpending data={sampleTransactions} />
+            <RecentActivity data={sampleTransactions} />
 
             <Modal
               visible={modalVisible}
@@ -228,27 +197,15 @@ export default function Transaction() {
                   }}
                   className=" rounded-3xl"
                 >
-                  <Text className="text-xl text-center font mb-4">
+                  <Text className="text-xl text-center font-bold mb-4">
                     New transaction
                   </Text>
-                  <CustomInput
-                    placeholder="Name"
-                    value={newTransaction.name}
-                    onChangeText={(text) => handleInputChange("name", text)}
-                    fixedSize={true}
-                  />
-                  <CustomInput
-                    placeholder="Amount"
-                    keyboardType="numeric"
-                    value={newTransaction.amount}
-                    onChangeText={(text) => handleInputChange("amount", text)}
-                    fixedSize={true}
-                  />
-                  <CustomInput
-                    placeholder="Date"
-                    value={newTransaction.date}
-                    onChangeText={(text) => handleInputChange("date", text)}
-                    fixedSize={true}
+                  <CustomRadio
+                    isSmall={true}
+                    option1="Expense"
+                    option2="Income"
+                    onPressOption1={() => setNewExpense({ ...newExpense, type: "Expense" })}
+                    onPressOption2={() => setNewExpense({ ...newExpense, type: "Income" })}
                   />
                   <CustomTouchable
                     color="#231f20"
