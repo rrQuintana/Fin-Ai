@@ -5,7 +5,8 @@ import CustomItemTab from "@components/navbar/CustomItemTab";
 import { ViewStyle } from "react-native";
 import HomeScreenStack from "@stacks/HomeScreenStack";
 import AccountScreenStack from "@stacks/AccountScreenStack";
-import MapsScreenStack from "@stacks/TransactionsScreenStack";
+import TransactionsScreenStack from "@stacks/TransactionsScreenStack";
+import ChatScreenStack from "@stacks/ChatScreenStack";
 import { useOnboardingStatus } from "src/hooks/useOnboardingStatus";
 import OnboardingForm from "@pages/Onboarding";
 import { setOnboardingStatus } from "@hooks/useOnboardingStatus";
@@ -47,6 +48,7 @@ export default function Tabs() {
               focused={focused}
               iconName={"person"}
               labelText="Profile"
+              isFirst
             />
           ),
         }}
@@ -66,13 +68,26 @@ export default function Tabs() {
       />
       <Tab.Screen
         name="TransactionsStack"
-        component={MapsScreenStack}
+        component={TransactionsScreenStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomItemTab
               focused={focused}
-              iconName={"pin"}
-              labelText="Transactions"
+              iconName={"stock"}
+              labelText="Tran..."
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ChatStack"
+        component={ChatScreenStack}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomItemTab
+              focused={focused}
+              iconName={"chat"}
+              labelText="Chat"
             />
           ),
         }}

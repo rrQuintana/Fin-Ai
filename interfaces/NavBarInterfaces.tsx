@@ -8,6 +8,6 @@ export interface CustomItemTabProps {
   focused: boolean;
   iconName: string;
   labelText: string; 
-
+  isFirst?: boolean;
 }
 

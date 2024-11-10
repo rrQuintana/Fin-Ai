@@ -14,7 +14,7 @@ const RecentActivity = ({data}: {data: any}) => {
         {data.map((transaction: any, index: any) => (
           <TouchableOpacity
             key={index}
-            className="flex flex-row items-center justify-between p-3 mb-3 bg-white rounded-lg shadow-sm"
+            className="flex flex-row items-center justify-between p-3 mb-3 bg-white rounded-3xl shadow-sm"
           >
             <View className="bg-zinc-200 p-3 rounded-full items-center justify-center">
               <Ionicons
