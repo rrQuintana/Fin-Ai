@@ -17,31 +17,31 @@ const cardColorTranslator = (color: string) => {
     case "red":
       return "bg-red-800";
     case "gray":
-      return "bg-gray-800";
+      return "bg-slate-500";
     default:
       return "bg-[#231f20]";
   }
 };
 
 const CreditCard = ({ card, index }: CreditCardProps) => {
-  const creditUsedPercentage =
-    (parseInt(card.usedCredit.replace("$", "")) /
-      parseInt(card.creditLimit.replace("$", ""))) *
-    100;
+  let creditUsedPercentage = 0;
+  if (card.type === "Credit" && card.creditLimit) {
+    creditUsedPercentage =
+      (parseInt(card.usedCredit.replace("$", "")) /
+        parseInt(card.creditLimit.replace("$", ""))) *
+      100;
+  }
 
-    const color = cardColorTranslator(card.color || "black");
+  const color = cardColorTranslator(card.color || "black");
 
   return (
-    <View
-      key={index}
-      className={`${color} p-4 my-2 rounded-3xl`}
-    >
+    <View key={index} className={`${color} p-4 my-2 rounded-3xl`}>
       <View className="flex-row justify-between">
         <Text className="text-white text-xl font-semibold">
           {card.bankName}
         </Text>
         <Text className="text-white text-xl font-semibold">
-          {card.creditLimit}
+          {card.usedCredit}
         </Text>
       </View>
       <View className="flex-row justify-between items-center mb-2">
@@ -49,35 +49,47 @@ const CreditCard = ({ card, index }: CreditCardProps) => {
           {card.cardName} - {card.type}
         </Text>
         <Text className="text-white text-md font-semibold text-center">
-          {card.usedCredit}
+          {card.creditLimit}
         </Text>
       </View>
-      <View className="my-2">
-        <View className="flex-row h-2 w-full bg-gray-600 rounded-full overflow-hidden">
-          <View
-            className={`${
-              creditUsedPercentage < 50
-                ? "bg-green-500"
-                : creditUsedPercentage < 80
-                ? "bg-yellow-500"
-                : "bg-red-500"
-            }`}
-            style={{
-              width: `${creditUsedPercentage}%`,
-            }}
-          />
+      {card.type === "Credit" ? (
+        <View className="my-2">
+          <View className="flex-row h-2 w-full bg-gray-600 rounded-full overflow-hidden">
+            <View
+              className={`${
+                creditUsedPercentage < 50
+                  ? "bg-green-500"
+                  : creditUsedPercentage < 80
+                  ? "bg-yellow-500"
+                  : "bg-red-500"
+              }`}
+              style={{
+                width: `${creditUsedPercentage}%`,
+              }}
+            />
+          </View>
+          <Text className="text-white text-xs text-center mt-1">
+            {`${creditUsedPercentage.toFixed(2)}%`} of your card limit
+          </Text>
         </View>
+      ) : (
         <Text className="text-white text-xs text-center mt-1">
-          {`${creditUsedPercentage.toFixed(2)}%`} of your card limit
+          No credit limit
         </Text>
-      </View>
+      )}
       <View className="mt-4">
         <View className="flex-row justify-between items-center mb-2">
-          <Text className="text-white text-lg font-semibold">Statement Closing Date:</Text>
-          <Text className="text-white text-lg">{card.statementClosingDate}</Text>
+          <Text className="text-white text-lg font-semibold">
+            Statement Closing Date:
+          </Text>
+          <Text className="text-white text-lg">
+            {card.statementClosingDate}
+          </Text>
         </View>
         <View className="flex-row justify-between items-center">
-          <Text className="text-white text-lg font-semibold">Payment Due Date:</Text>
+          <Text className="text-white text-lg font-semibold">
+            Payment Due Date:
+          </Text>
           <Text className="text-white text-lg">{card.paymentDueDate}</Text>
         </View>
       </View>

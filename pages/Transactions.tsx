@@ -267,6 +267,7 @@ export default function Transaction() {
               </View>
             </Modal>
           </View>
+          <View style={{ height: 150 }} />
         </ScrollView>
       </>
     </PageLayout>

@@ -1,8 +1,8 @@
 export interface CreditCardInterface {
     bankName: string;
-    creditLimit: string;
+    creditLimit?: string;
     cardName: string;
-    type: string;
+    type: "Credit" | "Charge";
     usedCredit: string;
     statementClosingDate: number;
     paymentDueDate: number;
