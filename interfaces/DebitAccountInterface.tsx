@@ -1,7 +1,7 @@
 export interface DebitAccountInterface {
     bankName: string;
     accountName: string;
-    balance: string;
+    balance: number;
     color?: "green" | "yellow" | "red" | "blue" | "black" | "white" | "gray";
 }
 

@@ -24,19 +24,20 @@ const cardColorTranslator = (color: string) => {
 };
 
 const DebitAccount = ({ account, index }: DebitAccountProps) => {
-    const color = cardColorTranslator(account.color || "black");
+  const color = cardColorTranslator(account.color || "black");
+
+  const formatCurrency = (amount: number) => {
+    return `$${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
+  };
 
   return (
-    <View
-      key={index}
-      className={`${color} p-4 my-2 rounded-3xl`}
-    >
+    <View key={index} className={`${color} p-4 my-2 rounded-3xl`}>
       <View className="flex-row justify-between">
         <Text className="text-white text-2xl font-semibold">
           {account.bankName}
         </Text>
         <Text className="text-white text-2xl font-semibold">
-          {account.balance}
+          {formatCurrency(account.balance)}
         </Text>
       </View>
       <View className="flex-row justify-between items-center my-5">

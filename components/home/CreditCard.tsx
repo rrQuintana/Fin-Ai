@@ -27,11 +27,12 @@ const CreditCard = ({ card, index }: CreditCardProps) => {
   let creditUsedPercentage = 0;
   if (card.type === "Credit" && card.creditLimit) {
     creditUsedPercentage =
-      (parseInt(card.usedCredit.replace("$", "")) /
-        parseInt(card.creditLimit.replace("$", ""))) *
+      (card.usedCredit / card.creditLimit) *
       100;
   }
-
+  const formatCurrency = (amount: number) => {
+    return `$${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+  };
   const color = cardColorTranslator(card.color || "black");
 
   return (
@@ -41,7 +42,7 @@ const CreditCard = ({ card, index }: CreditCardProps) => {
           {card.bankName}
         </Text>
         <Text className="text-white text-xl font-semibold">
-          {card.usedCredit}
+          {formatCurrency(card.usedCredit)}
         </Text>
       </View>
       <View className="flex-row justify-between items-center mb-2">
@@ -49,7 +50,7 @@ const CreditCard = ({ card, index }: CreditCardProps) => {
           {card.cardName} - {card.type}
         </Text>
         <Text className="text-white text-md font-semibold text-center">
-          {card.creditLimit}
+          {card.creditLimit ? formatCurrency(card.creditLimit) : ""}
         </Text>
       </View>
       {card.type === "Credit" ? (

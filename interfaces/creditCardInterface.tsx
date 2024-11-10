@@ -1,9 +1,9 @@
 export interface CreditCardInterface {
     bankName: string;
-    creditLimit?: string;
+    creditLimit?: number;
     cardName: string;
     type: "Credit" | "Charge";
-    usedCredit: string;
+    usedCredit: number;
     statementClosingDate: number;
     paymentDueDate: number;
     color?: "green" | "yellow" | "red" | "blue" | "black" | "white" | "gray";
