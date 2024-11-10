@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, View, ScrollView as Scroll, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  ScrollView as Scroll,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomTouchable from "@components/general/CustomTouchable";
 import Edit from "@assets/icons/Edit.svg";
@@ -9,7 +15,9 @@ import LogOut from "@assets/icons/LogOut.svg";
 import PinProfile from "@assets/icons/pinProfile.svg";
 import { useUser } from "@hooks/useUser";
 import PageLayoutButton from "@components/layout/PageLayoutButton";
-import DefaultProfileImage from "@assets/images/defaultProfile.jpeg"
+import PageLayout from "@components/layout/PageLayout";
+import DefaultProfileImage from "@assets/images/defaultProfile.jpeg";
+import { ScrollView } from "react-native";
 
 export default function Account() {
   const { username, email, signOut } = useUser();
@@ -21,25 +29,43 @@ export default function Account() {
   const { navigate } = useNavigation<Nav>();
 
   return (
-    <PageLayoutButton title="My profile" dontShowArrow={true}>
-      <Scroll className='w-5/6 mt-4 flex-1' showsVerticalScrollIndicator={false} contentInset={{ bottom: 100, top: 0 }}>
-        <View className="items-center ">
-          <View>
-            <Image
-              className="rounded-full w-36 h-36 border-4"
-              style={{borderColor : "#231f20" }}
-              source={DefaultProfileImage}
-            />
+    <PageLayout title="My profile" display={true}>
+      <>
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: 100,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View className="items-center px-4 mt-5">
+            <View>
+              <Image
+                className="rounded-full w-36 h-36 border-4"
+                style={{ borderColor: "#231f20" }}
+                source={DefaultProfileImage}
+              />
+            </View>
+            <Text
+              className="text-[#231f20]"
+              style={{ fontSize: 24, fontWeight: "bold", marginTop: 10 }}
+            >
+              {username || ""}
+            </Text>
+            <Text style={{ fontSize: 18, color: "grey", marginTop: 5 }}>
+              {email || ""}
+            </Text>
           </View>
-          <Text className='text-[#231f20]' style={{ fontSize: 24, fontWeight: 'bold', marginTop: 10 }}>{username || ""}</Text>
-          <Text style={{ fontSize: 18, color: 'grey', marginTop: 5 }}>{email || ""}</Text>
-        </View>
-        <View style={{ marginTop: 30 }}>
-          <CustomTouchable text="Update Password" icon={Lock} onPress={() => navigate("UpdatePassword")} />
-          <CustomTouchable text="Support" icon={Support} />
-          <CustomTouchable text="Sign Out" icon={LogOut} onPress={signOut}/>
-        </View>
-      </Scroll>
-    </PageLayoutButton>
+          <View className="mt-10 px-4">
+            <CustomTouchable
+              text="Update Password"
+              icon={Lock}
+              onPress={() => navigate("UpdatePassword")}
+            />
+            <CustomTouchable text="Support" icon={Support} />
+            <CustomTouchable text="Sign Out" icon={LogOut} onPress={signOut} />
+          </View>
+        </ScrollView>
+      </>
+    </PageLayout>
   );
 }

@@ -42,13 +42,13 @@ export default function UpdatePassword() {
         style={{ borderTopRightRadius: 50, borderTopLeftRadius: 50 }}
       >
         <Text className="text-[#231f20] text-center text-3xl font-semibold mt-10">
-          Actualizar contraseña
+          Update Password
         </Text>
         <View className="mt-6">
           <CustomInput
             value={oldPassword}
             onChangeText={setOldPassword}
-            placeholder="Contraseña actual"
+            placeholder="Current Password"
             secureTextEntry
             icon={Lock}
           />
@@ -57,7 +57,7 @@ export default function UpdatePassword() {
           <CustomInput
             value={newPassword}
             onChangeText={setNewPassword}
-            placeholder="Contraseña nueva"
+            placeholder="New Password"
             secureTextEntry
             icon={Lock}
           />
@@ -66,7 +66,7 @@ export default function UpdatePassword() {
           <CustomInput
             value={confirmPassword}
             onChangeText={setConfirmPassword}
-            placeholder="Confirmar Contraseña nueva"
+            placeholder="Confirm new password"
             secureTextEntry
             icon={Lock}
           />
@@ -75,8 +75,8 @@ export default function UpdatePassword() {
           onPress={handleUpdatePassword}
           className="bg-[#231f20] py-2 px-4 rounded-full mt-16"
         >
-          <Text className="text-white mx-20 my-1 font-medium text-xl">
-            Enviar
+          <Text className="text-white mx-28 my-2 font-medium text-xl">
+            Update
           </Text>
         </TouchableOpacity>
       </View>

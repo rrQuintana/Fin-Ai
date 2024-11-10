@@ -27,7 +27,7 @@ const sampleData = [
   //   amount: 1000,
   //   type: "Ingreso",
   //   date: "2021-09-03",
-  //   category: ExpenseCategoryInfo[ExpenseCategory.AHORRO_E_INVERSION],
+  //   category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
   // },
   // {
   //   name: "Spotify",
@@ -56,7 +56,7 @@ const RecentTransactions = () => {
     <View className="max-h-1/5">
       {/* Header */}
       <View className="flex flex-row justify-between items-center mb-4">
-        <Text className="font-medium text-lg">
+        <Text className="font-medium text-2xl">
           Recent Transactions
         </Text>
         <TouchableOpacity onPress={() => navigate("TransactionsStack")}>

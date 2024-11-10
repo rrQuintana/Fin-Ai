@@ -6,19 +6,19 @@ import { useNavigation } from '@react-navigation/native';
 
 const options = [
   {
-    name: 'Transactions',
+    name: 'Cards',
     icon: 'card',
+    route: 'Cards'
+  },
+  {
+    name: 'Transactions',
+    icon: 'trending-up',
     route: 'TransactionsStack'
   },
   {
-    name: 'Budgets',
-    icon: 'wallet',
-    route: 'Budgets'
-  },
-  {
-    name: 'Reminders',
-    icon: 'notifications',
-    route: 'Reminders'
+    name: 'Calendar',
+    icon: 'calendar',
+    route: 'Calendar'
   },
   {
     name: 'Chat',

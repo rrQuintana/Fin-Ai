@@ -1,8 +1,5 @@
-import { FlatList, Modal, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { learnData } from '@src/utils/learn'
-
-type Props = {}
 
 const Card = ({ title, description, icon, onPress }: { title: string, description: string, icon: any, onPress: () => void }) => {
   return (
@@ -11,7 +8,7 @@ const Card = ({ title, description, icon, onPress }: { title: string, descriptio
         <View className='h-1/2 bg-black rounded-t-3xl justify-center items-center'>
           <Text className='text-6xl text-white'>{icon}</Text>
         </View>
-        <View className='h-1/2 p-3'>
+        <View className='h-1/2 p-3 overflow-hidden'>
           <Text className='text-lg font-semibold'>{title}</Text>
           <Text className='text-gray-500 mt-1 line-clamp-2'>{description}</Text>
         </View>
@@ -44,8 +41,7 @@ const DiscoverMore = ({title, data}: {title: string, data: any}) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
-
-      {/* Modal */}
+      
       <Modal
         visible={modalVisible}
         animationType="slide"
