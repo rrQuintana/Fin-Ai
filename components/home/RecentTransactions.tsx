@@ -4,8 +4,8 @@ import {
   ExpenseCategory,
   ExpenseCategoryInfo,
 } from "@src/types/ExpenseCategory";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import SingleTransaction from "@components/transactions/SingleTransaction";
 
 const sampleData = [
   {
@@ -22,30 +22,30 @@ const sampleData = [
     date: "2021-09-02",
     category: ExpenseCategoryInfo[ExpenseCategory.TRANSPORT_AND_VEHICLES],
   },
-  // {
-  //   name: "Salario",
-  //   amount: 1000,
-  //   type: "Ingreso",
-  //   date: "2021-09-03",
-  //   category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
-  // },
-  // {
-  //   name: "Spotify",
-  //   amount: 10,
-  //   type: "Gasto",
-  //   date: "2021-09-04",
-  //   category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
-  // },
-  // {
-  //   name: "Netflix",
-  //   amount: 15,
-  //   type: "Gasto",
-  //   date: "2021-09-05",
-  //   category: ExpenseCategoryInfo[ExpenseCategory.SUSCRIPCIONES_Y_SERVICIOS],
-  // },
+  {
+    name: "Salario",
+    amount: 1000,
+    type: "Ingreso",
+    date: "2021-09-03",
+    category: ExpenseCategoryInfo[ExpenseCategory.SAVINGS_AND_INVESTMENT],
+  },
+  {
+    name: "Spotify",
+    amount: 10,
+    type: "Gasto",
+    date: "2021-09-04",
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
+  },
+  {
+    name: "Netflix",
+    amount: 15,
+    type: "Gasto",
+    date: "2021-09-05",
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
+  },
 ];
 
-const RecentTransactions = () => {
+const RecentTransactions = ({max}: {max: number}) => {
   type Nav = {
     navigate: (value: string) => void;
   };
@@ -66,39 +66,8 @@ const RecentTransactions = () => {
 
       {/* Transactions List */}
       <View>
-        {sampleData.map((transaction, index) => (
-          <TouchableOpacity
-            key={index}
-            className="flex flex-row items-center justify-between p-3 mb-3 bg-white rounded-3xl shadow-sm"
-          >
-            {/* Category Icon */}
-            <View className="bg-zinc-200 p-3 rounded-full items-center justify-center">
-              <Ionicons
-                name={
-                  transaction.category.icon as keyof typeof Ionicons.glyphMap
-                }
-                size={20}
-                color="black"
-              />
-            </View>
-
-            {/* Transaction Details */}
-            <View className="flex-1 ml-3">
-              <Text className="text-sm font-medium">
-                {transaction.category.name}
-              </Text>
-              <Text className="text-md">{transaction.name}</Text>
-            </View>
-
-            {/* Amount */}
-            <Text
-              className={`${
-                transaction.type === "Expense" ? "text-red-500" : "text-green-500"
-              } font-semibold text-right`}
-            >
-              {transaction.type === "Expense" ? "-" : "+"} ${transaction.amount}
-            </Text>
-          </TouchableOpacity>
+        {sampleData.slice(0, max).map((transaction, index) => (
+          <SingleTransaction key={index} transaction={transaction} />
         ))}
       </View>
     </View>

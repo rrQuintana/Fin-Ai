@@ -255,7 +255,6 @@ export default function Cards() {
             accounts.map((account, index) => (
               <DebitAccount key={index} account={account} index={index} />
             ))}
-
           <View style={{ height: 100 }} />
         </ScrollView>
       </View>
