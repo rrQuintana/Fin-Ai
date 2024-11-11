@@ -7,15 +7,14 @@ import HomeScreenStack from "@stacks/HomeScreenStack";
 import AccountScreenStack from "@stacks/AccountScreenStack";
 import TransactionsScreenStack from "@stacks/TransactionsScreenStack";
 import ChatScreenStack from "@stacks/ChatScreenStack";
-import { useOnboardingStatus } from "src/hooks/useOnboardingStatus";
 import OnboardingForm from "@pages/Onboarding";
-import { setOnboardingStatus } from "@hooks/useOnboardingStatus";
+import { useOnboardingStatus } from "@hooks/useOnboardingStatus";
 
 const OnboardingStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
-  const isFirstLaunch = useOnboardingStatus();
+  const { isFirstLaunch, completeOnboarding } = useOnboardingStatus();
 
   if (isFirstLaunch === null) return null;
 
@@ -26,7 +25,7 @@ export default function Tabs() {
       }}
     >
       <OnboardingStack.Screen name="Onboarding">
-      {() => <OnboardingForm completeOnboarding={setOnboardingStatus} />}
+        {() => <OnboardingForm completeOnboarding={completeOnboarding} />}
       </OnboardingStack.Screen>
     </OnboardingStack.Navigator>
   ) : (

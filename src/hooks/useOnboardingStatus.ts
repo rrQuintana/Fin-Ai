@@ -9,7 +9,6 @@ export const useOnboardingStatus = () => {
       const hasLaunched = await AsyncStorage.getItem("hasLaunched");
       if (hasLaunched === null) {
         setIsFirstLaunch(true);
-        await AsyncStorage.setItem("hasLaunched", "true");
       } else {
         setIsFirstLaunch(false);
       }
@@ -17,10 +16,11 @@ export const useOnboardingStatus = () => {
     checkOnboardingStatus();
   }, []);
 
-  return isFirstLaunch;
-};
+  // Function to manually set the onboarding status to false and save it in AsyncStorage
+  const completeOnboarding = async () => {
+    await AsyncStorage.setItem("hasLaunched", "true");
+    setIsFirstLaunch(false); // Immediately update the state after completion
+  };
 
-// function to manually set the onboarding status to true
-export const setOnboardingStatus = async () => {
-  await AsyncStorage.setItem("hasLaunched", "true");
+  return { isFirstLaunch, completeOnboarding };
 };

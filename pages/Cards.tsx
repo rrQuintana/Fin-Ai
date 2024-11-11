@@ -16,7 +16,7 @@ import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import CustomInput from "@components/general/CustomInput";
 import CustomTouchable from "@components/general/CustomTouchable";
 import CustomRadio from "@components/general/CustomRadio";
-import { ColorOptions, CreditCardInterface, MonthDays } from "../interfaces/creditCardInterface";
+import { ColorOptions, CreditCardInterface, MonthDays } from "@interfaces/CreditCardInterface";
 
 const cards: CreditCardInterface[] = [
   {
