@@ -9,14 +9,20 @@ export default function CustomInput({
   icon: Icon,
   keyboardType,
   inputMode,
+  isFixedSize,
   fixedSize,
 }: CustomInputProps) {
+  const width = fixedSize ? fixedSize : 320;
   return (
-    <View className={`bg-white border-gray-200 rounded-3xl border ${fixedSize ? 'p-4 my-2': 'w-80 flex flex-row items-center justify-evenly mt-8'} `}>
+    <View className={` bg-white border-gray-200 rounded-3xl border ${isFixedSize ? 'p-4 my-2': 'flex flex-row items-center justify-evenly mt-8'} `}
+      style={{
+        width: !isFixedSize ? width : undefined,
+      }}
+    >
       <TextInput
         autoCapitalize="none"
         placeholderTextColor={"gray"}
-        className={`${fixedSize ? '' :'w-64 h-14 px-4'}`}
+        className={`${isFixedSize ? '' :'w-64 h-14 px-4'}`}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}

@@ -8,7 +8,8 @@ export interface CustomInputProps {
   icon?: React.ComponentType<any>;
   keyboardType?: KeyboardTypeOptions;
   inputMode?: InputModeOptions;
-  fixedSize?: boolean;
+  isFixedSize?: boolean;
+  fixedSize?: number;
 }
 
 export interface CustomTouchableProps {

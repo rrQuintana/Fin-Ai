@@ -173,10 +173,10 @@ export default function Cards() {
             {selectedOption === "Cards" ? (
                 <>
                   <CustomRadio isSmall option1="Credit" option2="Charge" onPressOption1={() => setNewCard({ ...newCard, type: "Credit" })} onPressOption2={() => setNewCard({ ...newCard, type: "Charge" })} />
-                  <CustomInput placeholder="Bank Name" value={newCard.bankName} onChangeText={(text) => setNewCard({ ...newCard, bankName: text })} fixedSize={true} />
-                  <CustomInput placeholder="Card Name" value={newCard.cardName} onChangeText={(text) => setNewCard({ ...newCard, cardName: text })} fixedSize={true} />
-                  <CustomInput placeholder="Used Credit" value={newCard.usedCredit} onChangeText={(text) => setNewCard({ ...newCard, usedCredit: text })} fixedSize={true} keyboardType="numeric"/>
-                  { newCard.type === "Credit" && <CustomInput placeholder="Credit Limit" value={newCard.creditLimit} onChangeText={(text) => setNewCard({ ...newCard, creditLimit: text })} fixedSize={true}  keyboardType="numeric"/> }
+                  <CustomInput placeholder="Bank Name" value={newCard.bankName} onChangeText={(text) => setNewCard({ ...newCard, bankName: text })} isFixedSize={true} />
+                  <CustomInput placeholder="Card Name" value={newCard.cardName} onChangeText={(text) => setNewCard({ ...newCard, cardName: text })} isFixedSize={true} />
+                  <CustomInput placeholder="Used Credit" value={newCard.usedCredit} onChangeText={(text) => setNewCard({ ...newCard, usedCredit: text })} isFixedSize={true} keyboardType="numeric"/>
+                  { newCard.type === "Credit" && <CustomInput placeholder="Credit Limit" value={newCard.creditLimit} onChangeText={(text) => setNewCard({ ...newCard, creditLimit: text })} isFixedSize={true}  keyboardType="numeric"/> }
                   <CustomDropdown
                     data={MonthDays}
                     onChange={(value) => setNewCard({ ...newCard, statementClosingDate: value.value })}
@@ -195,9 +195,9 @@ export default function Cards() {
                 </>
               ) : (
                 <>
-                  <CustomInput placeholder="Bank Name" value={newAccount.bankName} onChangeText={(text) => setNewAccount({ ...newAccount, bankName: text })} fixedSize={true} />
-                  <CustomInput placeholder="Account Name" value={newAccount.accountName} onChangeText={(text) => setNewAccount({ ...newAccount, accountName: text })} fixedSize={true} />
-                  <CustomInput placeholder="Balance" value={newAccount.balance} onChangeText={(text) => setNewAccount({ ...newAccount, balance: text })} fixedSize={true} keyboardType="numeric" />
+                  <CustomInput placeholder="Bank Name" value={newAccount.bankName} onChangeText={(text) => setNewAccount({ ...newAccount, bankName: text })} isFixedSize={true} />
+                  <CustomInput placeholder="Account Name" value={newAccount.accountName} onChangeText={(text) => setNewAccount({ ...newAccount, accountName: text })} isFixedSize={true} />
+                  <CustomInput placeholder="Balance" value={newAccount.balance} onChangeText={(text) => setNewAccount({ ...newAccount, balance: text })} isFixedSize={true} keyboardType="numeric" />
                   <CustomDropdown
                     data={ColorOptions}
                     onChange={(value) => setNewAccount({ ...newAccount, color: value.value })}
