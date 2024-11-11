@@ -11,12 +11,12 @@ import CustomDropdown from "@components/general/CustomDropdown";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CreditCard from "@components/home/CreditCard";
-import { CreditCardInterface, MonthDays, ColorOptions } from "@interfaces/CreditCardInterface";
 import DebitAccount from "@components/home/DebitAccount";
 import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import CustomInput from "@components/general/CustomInput";
 import CustomTouchable from "@components/general/CustomTouchable";
 import CustomRadio from "@components/general/CustomRadio";
+import { ColorOptions, CreditCardInterface, MonthDays } from "../interfaces/creditCardInterface";
 
 const cards: CreditCardInterface[] = [
   {

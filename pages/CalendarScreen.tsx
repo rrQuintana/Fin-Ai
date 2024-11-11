@@ -6,6 +6,7 @@ import { transactions_mock } from 'mocks/transactions';
 import { Reminder, reminders_mock } from 'mocks/reminders';
 import TransactionDetailsModal from '@components/general/TransactionDetailsModal';
 import { Transaction } from '@src/utils/groupTransactions';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {};
 
@@ -17,6 +18,8 @@ const CalendarScreen: React.FC<Props> = () => {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [showAgenda, setShowAgenda] = useState<boolean>(false);
   const [transactionDetails, setTransactionDetails] = useState<Transaction | undefined>(undefined);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const dates: { [key: string]: any } = {};
@@ -105,7 +108,7 @@ const CalendarScreen: React.FC<Props> = () => {
       </View>
 
       <Text style={{ fontSize: 14, fontWeight: '600', color: item.type === 'Gasto' ? 'red' : 'green', textAlign: 'right' }}>
-        {item.amount ? `${item.type === 'Gasto' ? '-' : '' } $ ${item.amount}` : 'Descripción'}
+        {item.amount ? `${item.type === 'Gasto' ? '-' : ''} $ ${item.amount}` : 'Descripción'}
       </Text>
     </TouchableOpacity>
   );
@@ -140,10 +143,13 @@ const CalendarScreen: React.FC<Props> = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
       <TransactionDetailsModal transaction={transactionDetails} onClose={() => setTransactionDetails(undefined)} visible={!!transactionDetails} />
-
-      <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', marginVertical: 20 }}>
-        {showAgenda ? 'Agenda del Día' : 'Calendario'}
-      </Text>
+      <View className="flex flex-row justify-between px-3 items-center">
+        <Ionicons name='arrow-back' size={24} color='black' onPress={() => navigation.goBack()} />
+        <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', marginVertical: 20 }}>
+          {showAgenda ? 'Today´s agenda' : 'Calendar'}
+        </Text>
+        <Ionicons name='arrow-back' size={24} color='transparent' />
+      </View>
 
       {showAgenda ? (
         <ScrollView style={{ flex: 1 }}>

@@ -16,6 +16,11 @@ const options = [
     route: 'TransactionsStack'
   },
   {
+    name: 'Budgets',
+    icon: 'wallet',
+    route: 'Budgets'
+  },
+  {
     name: 'Calendar',
     icon: 'calendar',
     route: 'Calendar'
@@ -29,7 +34,7 @@ const options = [
 
 const OptionButton = ({ name, icon, onPress }: OptionProps) => {
   return (
-    <TouchableOpacity className='flex items-center mr-4' onPress={onPress}>
+    <TouchableOpacity className='flex items-center w-24' onPress={onPress}>
       <View className='w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center'>
         <Ionicons name={icon} size={20} />
       </View>

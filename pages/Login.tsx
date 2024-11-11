@@ -12,6 +12,7 @@ import CustomInput from "@components/general/CustomInput";
 import User from "@assets/icons/User.svg";
 import Lock from "@assets/icons/Lock.svg";
 import Landing from "./Landing";
+import { useOnboardingStatus } from "@hooks/useOnboardingStatus";
 
 export default function Login() {
   type Nav = {
@@ -31,9 +32,14 @@ export default function Login() {
     }
   }
 
+  const isFirstLaunch = useOnboardingStatus();
+
+  if (isFirstLaunch) {
+    return (<Landing />);
+  }
+
   return (
-    <SafeAreaView className="bg-[#231f20] flex-1 items-center justify-center">
-      <Landing />
+    <SafeAreaView className="bg-[#231f20]">
       <View
         style={{ borderTopRightRadius: 70, borderTopLeftRadius: 70 }}
         className="bg-white p-4 w-screen h-screen mt-32 items-center justify-start"
@@ -63,7 +69,7 @@ export default function Login() {
           onPress={() => navigate("ForgotPassword")}
           className="mt-4 w-full justify-self-start pl-10 ml-2"
         >
-            <Text className="text-[#231f20]">Forgot your password?</Text>
+          <Text className="text-[#231f20]">Forgot your password?</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleSignIn}
