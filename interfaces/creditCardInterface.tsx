@@ -9,7 +9,7 @@ export interface CreditCardInterface {
   statementClosingDate: number;
   paymentDueDate: number;
   color?: "green" | "yellow" | "red" | "blue" | "black" | "white" | "gray";
-  transactions: TransactionInterface[];
+  transactions?: TransactionInterface[];
 }
 
 export interface CreditCardProps {

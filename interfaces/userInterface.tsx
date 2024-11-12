@@ -1,31 +1,194 @@
+import { CreditCardInterface } from "./CreditCardInterface";
+import { DebitAccountInterface } from "./DebitAccountInterface";
+import { TransactionInterface } from "./TransactionInterface";
+import {
+  ExpenseCategoryInfo,
+  ExpenseCategory,
+  IncomeCategoryInfo,
+  IncomeCategory,
+} from "@src/types/ExpenseCategory";
+import { sampleUser } from "./UserDataInterface";
+
 export interface User {
-    username: string;
-    password?: string;
-    name: string;
-    phone_number: string;
+  username: string;
+  password?: string;
+  name: string;
+  phone_number: string;
 }
 
 export type SignUpParameters = {
-    username: string;
-    password: string;
-    email: string;
-    phone_number: string;
+  username: string;
+  password: string;
+  email: string;
+  phone_number: string;
 };
 
 export interface ConfirmEmailProps {
-    username?: string;
+  username?: string;
 }
 
 export interface userCreditInterface {
-    usedCredit: string;
-    creditLimit: string;
-    monthlyIncome: string;
-    currentExpenses: string;
+  usedCredit: string;
+  creditLimit: string;
+  monthlyIncome: string;
+  currentExpenses: string;
 }
 
 export const userCredit = {
-    usedCredit: "$30,250",
-    creditLimit: "$120,000",
-    monthlyIncome: "80,000",
-    currentExpenses: "32,000",
+  monthlyIncome: sampleUser.monthlyIncome,
+  usedCredit: sampleUser.creditCards
+    .reduce((acc, card) => acc + card.usedCredit, 0)
+    .toString(),
+  creditLimit: sampleUser.creditCards
+    .reduce((acc, card) => acc + (card.creditLimit ?? 0), 0)
+    .toString(),
+  currentExpenses: sampleUser.creditCards
+    .reduce((acc, card) => acc + (card.usedCredit ?? 0), 0)
+    .toString(),
 };
+
+const sampleCards: CreditCardInterface[] = [
+  {
+    bankName: "Bank of America",
+    type: "Credit",
+    cardName: "Travel Rewards",
+    usedCredit: 14000,
+    creditLimit: 32000,
+    statementClosingDate: 25,
+    paymentDueDate: 15,
+    transactions: [
+      {
+        name: "Apple Store",
+        amount: 2000,
+        type: "Expense",
+        date: "2021-07-01",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+      {
+        name: "Best Buy",
+        amount: 3000,
+        type: "Expense",
+        date: "2021-07-02",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+    ],
+  },
+  {
+    bankName: "Chase",
+    type: "Credit",
+    cardName: "Freedom Unlimited",
+    usedCredit: 20000,
+    creditLimit: 55000,
+    statementClosingDate: 20,
+    paymentDueDate: 10,
+    color: "blue",
+    transactions: [
+      {
+        name: "Amazon",
+        amount: 1000,
+        type: "Expense",
+        date: "2021-07-01",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+      {
+        name: "Uber",
+        amount: 500,
+        type: "Expense",
+        date: "2021-07-02",
+        category: ExpenseCategoryInfo.TRANSPORT_AND_VEHICLES,
+      },
+    ],
+  },
+  {
+    bankName: "American Express",
+    type: "Charge",
+    cardName: "Platinum Card",
+    usedCredit: 12300,
+    statementClosingDate: 29,
+    paymentDueDate: 9,
+    color: "gray",
+    transactions: [
+      {
+        name: "Starbucks",
+        amount: 80,
+        type: "Expense",
+        date: "2021-07-01",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+      {
+        name: "Best Buy",
+        amount: 3000,
+        type: "Expense",
+        date: "2021-07-02",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+    ],
+  },
+];
+const sampleAccounts: DebitAccountInterface[] = [
+  {
+    bankName: "Chase",
+    accountName: "Checking",
+    balance: 14000,
+    color: "blue",
+    transactions: [
+      {
+        name: "Apple Store",
+        amount: 2000,
+        type: "Expense",
+        date: "2021-07-01",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+      {
+        name: "Best Buy",
+        amount: 3000,
+        type: "Expense",
+        date: "2021-07-02",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+    ],
+  },
+  {
+    bankName: "Bank of America",
+    accountName: "Savings",
+    balance: 20000,
+    transactions: [
+      {
+        name: "Amazon",
+        amount: 1000,
+        type: "Expense",
+        date: "2021-07-01",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+      {
+        name: "Uber",
+        amount: 500,
+        type: "Expense",
+        date: "2021-07-02",
+        category: ExpenseCategoryInfo.TRANSPORT_AND_VEHICLES,
+      },
+    ],
+  },
+  {
+    bankName: "Wells Fargo",
+    accountName: "Checking",
+    balance: 12300,
+    color: "red",
+    transactions: [
+      {
+        name: "Starbucks",
+        amount: 80,
+        type: "Expense",
+        date: "2021-07-01",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+      {
+        name: "Best Buy",
+        amount: 3000,
+        type: "Expense",
+        date: "2021-07-02",
+        category: ExpenseCategoryInfo.ONLINE_SHOPPING,
+      },
+    ],
+  },
+];

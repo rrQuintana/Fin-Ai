@@ -24,7 +24,7 @@ const cardColorTranslator = (color: string) => {
 };
 
 const DebitAccount = ({ account, index, onPress }: DebitAccountProps) => {
-  const color = cardColorTranslator(account.color || "black");
+  const color = cardColorTranslator(account?.color || "black");
 
   function formatCurrency(amount: number | undefined) {
     if (typeof amount !== "number") {
@@ -37,15 +37,15 @@ const DebitAccount = ({ account, index, onPress }: DebitAccountProps) => {
     <TouchableOpacity key={index} className={`${color} p-4 my-2 rounded-3xl`} onPress={onPress}>
       <View className="flex-row justify-between">
         <Text className="text-white text-2xl font-semibold">
-          {account.bankName}
+          {account?.bankName}
         </Text>
         <Text className="text-white text-2xl font-semibold">
-          {formatCurrency(account.balance)}
+          {formatCurrency(account?.balance)}
         </Text>
       </View>
       <View className="flex-row justify-between items-center my-5">
         <Text className="text-white text-lg text-center">
-          {account.accountName}
+          {account?.accountName}
         </Text>
       </View>
     </TouchableOpacity>

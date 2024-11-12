@@ -23,7 +23,7 @@ const Icon = ({ positive, title, value }: IconProps) => {
         <Text className="text-xs font-normal text-gray-400 mb-0.5">
           {title}
         </Text>
-        <Text className="text-sm font-semibold text-white">$ {value}</Text>
+        <Text className="text-sm font-semibold text-white">{value}</Text>
       </View>
     </View>
   );
@@ -34,6 +34,10 @@ export default function FinancialCard({ userCredit }: { userCredit: userCreditIn
     (parseInt(userCredit.usedCredit.replace("$", "")) /
       parseInt(userCredit.creditLimit.replace("$", ""))) *
     100;
+
+    const formatCurrency = (amount: number) => {
+      return `$${amount?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
+    };
 
   return (
     <LinearGradient
@@ -48,10 +52,10 @@ export default function FinancialCard({ userCredit }: { userCredit: userCreditIn
             {moment().format("MMMM-YYYY")}
           </Text>
           <Text className="text-white text-4xl font-bold text-center">
-            {userCredit.usedCredit}
+            {formatCurrency(parseInt(userCredit.usedCredit.replace("$", "")))}
           </Text>
           <Text className="text-white text-xs text-center">
-            Total Credit: {userCredit.creditLimit}
+            Total Credit: {formatCurrency(parseInt(userCredit.creditLimit.replace("$", "")))}
           </Text>
         </View>
         <View className="my-2 w-full">
@@ -69,14 +73,14 @@ export default function FinancialCard({ userCredit }: { userCredit: userCreditIn
             />
           </View>
           <Text className="text-white text-xs text-center">
-            {`${creditUsedPercentage.toFixed(2)}%`} of your monthly budget
+            {`${creditUsedPercentage.toFixed(2)}%`} of your total credit
           </Text>
           <View className="w-full flex flex-row justify-between mt-2 mb-5 items-center">
-            <Icon positive title="Income" value={userCredit.monthlyIncome} />
+            <Icon positive title="Income" value={formatCurrency(parseInt(userCredit.monthlyIncome.replace("$", "")))} />
             <Icon
               positive={false}
               title="Expenses"
-              value={userCredit.currentExpenses}
+              value={formatCurrency(parseInt(userCredit.currentExpenses.replace("$", "")))}
             />
           </View>
         </View>

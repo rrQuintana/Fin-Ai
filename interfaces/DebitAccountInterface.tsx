@@ -4,7 +4,7 @@ export interface DebitAccountInterface {
     accountName: string;
     balance: number;
     color?: "green" | "yellow" | "red" | "blue" | "black" | "white" | "gray";
-    transactions: TransactionInterface[];
+    transactions?: TransactionInterface[];
 }
 
 
