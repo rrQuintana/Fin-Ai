@@ -10,9 +10,11 @@ import React, { useState } from "react";
 import MySpending from "@components/transactions/MySpending";
 import {
   ExpenseCategory,
+  ExpenseCategoryArray,
   ExpenseCategoryInfo,
   IncomeCategory,
   IncomeCategoryInfo,
+  IncomeCategoryArray
 } from "@src/types/ExpenseCategory";
 import Expense from "@components/transactions/Expense";
 import RecentActivity from "@components/transactions/RecentActivity";
@@ -20,6 +22,7 @@ import CustomTouchable from "@components/general/CustomTouchable";
 import CustomInput from "@components/general/CustomInput";
 import CustomRadio from "@components/general/CustomRadio";
 import { sampleTransactions, TransactionInterface, TransactionProps } from "@interfaces/TransactionInterface";
+import CustomDropdown from "@components/general/CustomDropdown";
 
 export default function Transaction() {
   type Nav = {
@@ -29,6 +32,7 @@ export default function Transaction() {
   const { navigate } = useNavigation<Nav>();
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedType, setSelectedType] = useState("Expense");
   const [newExpense, setNewExpense] = useState<TransactionInterface>({
     name: "",
     amount: 0,
@@ -142,22 +146,68 @@ export default function Transaction() {
                     New transaction
                   </Text>
                   <CustomRadio
-                    isSmall={true}
                     option1="Expense"
                     option2="Income"
-                    onPressOption1={() => setNewExpense({ ...newExpense, type: "Expense" })}
-                    onPressOption2={() => setNewExpense({ ...newExpense, type: "Income" })}
+                    onPressOption1={() => setSelectedType("Expense")}
+                    onPressOption2={() => setSelectedType("Income")}
                   />
+                  {selectedType === "Expense" ? (
+                    <>
+                      <CustomInput
+                        placeholder="Starbucks Latte"
+                        value={newExpense.name}
+                        onChangeText={(value) => handleExpenseChange("name", value)}
+                        isFixedSize={true}
+                      />
+                      <CustomInput
+                        placeholder="8.45"
+                        value={newExpense.amount.toString()}
+                        onChangeText={(value) => handleExpenseChange("amount", value)}
+                        isFixedSize={true}
+                      />
+                      <CustomInput
+                        placeholder="Date"
+                        value={newExpense.date}
+                        onChangeText={(value) => handleExpenseChange("date", value)}
+                        isFixedSize={true}
+                      />
+                      <CustomDropdown
+                        data={ExpenseCategoryArray}
+                        placeholder="Category"
+                        onChange={(value) => handleExpenseChange("category", value.value)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <CustomInput
+                        placeholder="Bonus"
+                        value={newExpense.name}
+                        onChangeText={(value) => handleIncomeChange("name", value)}
+                        isFixedSize={true}
+                      />
+                      <CustomInput
+                        placeholder="3500"
+                        value={newExpense.amount.toString()}
+                        onChangeText={(value) => handleIncomeChange("amount", value)}
+                        isFixedSize={true}
+                      />
+                      <CustomInput
+                        placeholder="Date"
+                        value={newExpense.date}
+                        onChangeText={(value) => handleIncomeChange("date", value)}
+                        isFixedSize={true}
+                      />
+                      <CustomDropdown
+                        data={IncomeCategoryArray}
+                        placeholder="Category"
+                        onChange={(value) => handleIncomeChange("category", value.value)}
+                      />
+                    </>
+                  )}
                   <CustomTouchable
                     color="#231f20"
                     text="Add transaction"
                     whiteText={true}
-                    onPress={() => setModalVisible(false)}
-                  />
-                  <CustomTouchable
-                    color="#ad2000"
-                    whiteText={true}
-                    text="Cancel"
                     onPress={() => setModalVisible(false)}
                   />
                 </View>

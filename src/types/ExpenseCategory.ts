@@ -1,5 +1,32 @@
 import { Ionicons } from '@expo/vector-icons';
 
+export const ExpenseCategoryArray: { label: string; value: any; }[] = [
+  { label: 'Food and Drinks', value: 'FOOD_AND_DRINKS' },
+  { label: 'Transport and Vehicles', value: 'TRANSPORT_AND_VEHICLES' },
+  { label: 'Housing and Services', value: 'HOUSING_AND_SERVICES' },
+  { label: 'Health and Wellness', value: 'HEALTH_AND_WELLNESS' },
+  { label: 'Education and Culture', value: 'EDUCATION_AND_CULTURE' },
+  { label: 'Online Shopping', value: 'ONLINE_SHOPPING' },
+  { label: 'Finances', value: 'FINANCES' },
+  { label: 'Family and Care', value: 'FAMILY_AND_CARE' },
+  { label: 'Leisure and Entertainment', value: 'LEISURE_AND_ENTERTAINMENT' },
+  { label: 'Taxes and Duties', value: 'TAXES_AND_DUTIES' },
+  { label: 'Savings and Investment', value: 'SAVINGS_AND_INVESTMENT' },
+  { label: 'Clothing and Accessories', value: 'CLOTHING_AND_ACCESSORIES' },
+  { label: 'Gifts and Donations', value: 'GIFTS_AND_DONATIONS' },
+  { label: 'Maintenance and Care', value: 'MAINTENANCE_AND_CARE' },
+  { label: 'Travel and Vacations', value: 'TRAVEL_AND_VACATIONS' },
+  { label: 'Subscriptions', value: 'SUBSCRIPTIONS_AND_SERVICES' },
+  { label: 'Personal Care and Sports', value: 'PERSONAL_CARE_AND_SPORTS' },
+  { label: 'Pets and Animals', value: 'PETS_AND_ANIMALS' },
+  { label: 'Art and Culture', value: 'ART_AND_CULTURE' },
+  { label: 'Charity and Volunteering', value: 'CHARITY_AND_VOLUNTEERING' },
+  { label: 'Communications', value: 'COMMUNICATIONS' },
+  { label: 'Financial Education', value: 'FINANCIAL_EDUCATION' },
+  { label: 'Alternative Investments', value: 'ALTERNATIVE_INVESTMENTS' },
+  { label: 'Emergency Fund', value: 'EMERGENCY_FUND' },
+];
+
 // Enum for expense categories (keys only)
 export enum ExpenseCategory {
   FOOD_AND_DRINKS = 'FOOD_AND_DRINKS',
@@ -64,6 +91,16 @@ export enum IncomeCategory {
   REFUNDS = 'REFUNDS',
   OTHER = 'OTHER',
 }
+
+export const IncomeCategoryArray: { label: string; value: any; }[] = [
+  { label: 'Salary', value: 'SALARY' },
+  { label: 'Investments', value: 'INVESTMENTS' },
+  { label: 'Transfers', value: 'TRANSFERS' },
+  { label: 'Side Hustles', value: 'SIDE_HUSTLES' },
+  { label: 'Gifts', value: 'GIFTS' },
+  { label: 'Refunds', value: 'REFUNDS' },
+  { label: 'Other', value: 'OTHER' },
+];
 
 export const IncomeCategoryInfo = {
   [IncomeCategory.SALARY]: { name: 'Salary', icon: 'wallet' },

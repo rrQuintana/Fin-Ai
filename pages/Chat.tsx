@@ -9,7 +9,7 @@ import { useUser } from "@hooks/useUser";
 const MockChat = [
   {
     id: 1,
-    sender: "Luis Morales",
+    sender: "User",
     message: "Hello!",
   },
   {

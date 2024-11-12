@@ -52,7 +52,7 @@ const sampleData = [
   },
 ];
 
-const RecentTransactions = ({max}: {max?: number}) => {
+const RecentTransactions = ({max, hideButton}: {max?: number, hideButton?: boolean}) => {
   type Nav = {
     navigate: (value: string) => void;
   };
@@ -66,7 +66,7 @@ const RecentTransactions = ({max}: {max?: number}) => {
         <Text className="font-medium text-2xl">
           Recent Transactions
         </Text>
-        <TouchableOpacity onPress={() => navigate("TransactionsStack")}>
+        <TouchableOpacity onPress={() => navigate("TransactionsStack")} className={hideButton ? "hidden" : ""}>
           <Text className="text-zinc-500 text-sm">Details {">"}</Text>
         </TouchableOpacity>
       </View>

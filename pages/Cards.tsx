@@ -16,7 +16,7 @@ import CustomTouchable from "@components/general/CustomTouchable";
 import CustomRadio from "@components/general/CustomRadio";
 import RecentTransactions from "@components/home/RecentTransactions";
 import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
-import { ColorOptions, CreditCardInterface, MonthDays } from "../interfaces/creditCardInterface";
+import { ColorOptions, CreditCardInterface, MonthDays } from "@interfaces/CreditCardInterface";
 
 const cards: CreditCardInterface[] = [
   {
@@ -303,14 +303,14 @@ export default function Cards() {
         onRequestClose={closeCardModal}
       >
         <View className="w-full h-full bg-white bg-opacity-50">
-          <View className="bg-red-200 pt-20 px-4">
+          <View className=" pt-20 px-4">
             {selectedOption === "Cards" ? (
               <CreditCard card={selectedItem} index={0} />
             ) : (
               <DebitAccount account={selectedItem} index={0} />
             )}
             <ScrollView className="mt-5">
-            <RecentTransactions/>
+            <RecentTransactions max={4} hideButton/>
             </ScrollView>
           </View>
           <View className="absolute bottom-5 w-full px-4">
