@@ -6,7 +6,7 @@ export const useOnboardingStatus = () => {
 
   useEffect(() => {
     const checkOnboardingStatus = async () => {
-      const hasLaunched = await AsyncStorage.getItem("hasLaunched");
+      const hasLaunched = await AsyncStorage.getItem("has2Launched");
       if (hasLaunched === null) {
         setIsFirstLaunch(true);
       } else {
@@ -18,7 +18,7 @@ export const useOnboardingStatus = () => {
 
   // Function to manually set the onboarding status to false and save it in AsyncStorage
   const completeOnboarding = async () => {
-    await AsyncStorage.setItem("hasLaunched", "true");
+    await AsyncStorage.setItem("has2Launched", "true");
     setIsFirstLaunch(false); // Immediately update the state after completion
   };
 

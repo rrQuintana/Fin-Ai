@@ -3,7 +3,6 @@ import {
   SafeAreaView,
   View,
   ScrollView,
-  TextInput,
   TouchableOpacity,
   Modal,
 } from "react-native";
@@ -16,7 +15,12 @@ import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import CustomInput from "@components/general/CustomInput";
 import CustomTouchable from "@components/general/CustomTouchable";
 import CustomRadio from "@components/general/CustomRadio";
-import { ColorOptions, CreditCardInterface, MonthDays } from "@interfaces/CreditCardInterface";
+import {
+  ColorOptions,
+  CreditCardInterface,
+  MonthDays,
+} from "@interfaces/CreditCardInterface";
+import RecentTransactions from "@components/home/RecentTransactions";
 
 const cards: CreditCardInterface[] = [
   {
@@ -75,8 +79,9 @@ export default function Cards() {
 
   const { navigate } = useNavigation<Nav>();
   const [selectedOption, setSelectedOption] = useState("Cards");
-  const [creditSelected, setCreditSelected] = useState("Credit");
   const [modalVisible, setModalVisible] = useState(false);
+  const [cardModalVisible, setCardModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<any>(null);
   const [newCard, setNewCard] = useState<CreditCardInterface>({
     bankName: "",
     type: "Credit",
@@ -107,9 +112,19 @@ export default function Cards() {
     });
   };
 
+  const handleCardPress = (item: any) => {
+    setSelectedItem(item);
+    setCardModalVisible(true);
+  };
+
   const closeModal = () => {
     setModalVisible(false);
     clearForm();
+  };
+
+  const closeCardModal = () => {
+    setCardModalVisible(false);
+    setSelectedItem(null);
   };
 
   const createCard = () => {
@@ -117,13 +132,13 @@ export default function Cards() {
     newCard.creditLimit = parseFloat((newCard.creditLimit ?? 0).toString());
     cards.push(newCard);
     closeModal();
-  }
+  };
 
   const createAccount = () => {
     newAccount.balance = parseFloat(newAccount.balance.toString());
     accounts.push(newAccount);
     closeModal();
-  }
+  };
 
   return (
     <SafeAreaView className="bg-[#231f20] flex-1 items-center justify-center">
@@ -155,10 +170,7 @@ export default function Cards() {
             className=" rounded-3xl"
           >
             <View className="flex-row items-center justify-between px-4">
-              <View
-                className="w-5 items-center justify-center opacity-0"
-              >
-              </View>
+              <View className="w-5 items-center justify-center opacity-0"></View>
               <Text className="text-[#231f20] text-center text-xl font-semibold">
                 New {selectedOption === "Cards" ? "card" : "account"}
               </Text>
@@ -168,49 +180,150 @@ export default function Cards() {
               >
                 <Text className="text-[#231f20] text-xl">X</Text>
               </TouchableOpacity>
-              
             </View>
             {selectedOption === "Cards" ? (
-                <>
-                  <CustomRadio isSmall option1="Credit" option2="Charge" onPressOption1={() => setNewCard({ ...newCard, type: "Credit" })} onPressOption2={() => setNewCard({ ...newCard, type: "Charge" })} />
-                  <CustomInput placeholder="Bank Name" value={newCard.bankName} onChangeText={(text) => setNewCard({ ...newCard, bankName: text })} isFixedSize={true} />
-                  <CustomInput placeholder="Card Name" value={newCard.cardName} onChangeText={(text) => setNewCard({ ...newCard, cardName: text })} isFixedSize={true} />
-                  <CustomInput placeholder="Used Credit" value={newCard.usedCredit} onChangeText={(text) => setNewCard({ ...newCard, usedCredit: text })} isFixedSize={true} keyboardType="numeric"/>
-                  { newCard.type === "Credit" && <CustomInput placeholder="Credit Limit" value={newCard.creditLimit} onChangeText={(text) => setNewCard({ ...newCard, creditLimit: text })} isFixedSize={true}  keyboardType="numeric"/> }
-                  <CustomDropdown
-                    data={MonthDays}
-                    onChange={(value) => setNewCard({ ...newCard, statementClosingDate: value.value })}
-                    placeholder="Statement Closing Date"
+              <>
+                <CustomRadio
+                  isSmall
+                  option1="Credit"
+                  option2="Charge"
+                  onPressOption1={() =>
+                    setNewCard({ ...newCard, type: "Credit" })
+                  }
+                  onPressOption2={() =>
+                    setNewCard({ ...newCard, type: "Charge" })
+                  }
+                />
+                <CustomInput
+                  placeholder="Bank Name"
+                  value={newCard.bankName}
+                  onChangeText={(text) =>
+                    setNewCard({ ...newCard, bankName: text })
+                  }
+                  isFixedSize={true}
+                />
+                <CustomInput
+                  placeholder="Card Name"
+                  value={newCard.cardName}
+                  onChangeText={(text) =>
+                    setNewCard({ ...newCard, cardName: text })
+                  }
+                  isFixedSize={true}
+                />
+                <CustomInput
+                  placeholder="Used Credit"
+                  value={newCard.usedCredit}
+                  onChangeText={(text) =>
+                    setNewCard({ ...newCard, usedCredit: text })
+                  }
+                  isFixedSize={true}
+                  keyboardType="numeric"
+                />
+                {newCard.type === "Credit" && (
+                  <CustomInput
+                    placeholder="Credit Limit"
+                    value={newCard.creditLimit}
+                    onChangeText={(text) =>
+                      setNewCard({ ...newCard, creditLimit: text })
+                    }
+                    isFixedSize={true}
+                    keyboardType="numeric"
                   />
-                  <CustomDropdown
-                    data={MonthDays}
-                    onChange={(value) => setNewCard({ ...newCard, paymentDueDate: value.value })}
-                    placeholder="Payment Due Date"
-                  />
-                  <CustomDropdown
-                    data={ColorOptions}
-                    onChange={(value) => setNewAccount({ ...newAccount, color: value.value })}
-                    placeholder="Color"
-                  />
-                </>
-              ) : (
-                <>
-                  <CustomInput placeholder="Bank Name" value={newAccount.bankName} onChangeText={(text) => setNewAccount({ ...newAccount, bankName: text })} isFixedSize={true} />
-                  <CustomInput placeholder="Account Name" value={newAccount.accountName} onChangeText={(text) => setNewAccount({ ...newAccount, accountName: text })} isFixedSize={true} />
-                  <CustomInput placeholder="Balance" value={newAccount.balance} onChangeText={(text) => setNewAccount({ ...newAccount, balance: text })} isFixedSize={true} keyboardType="numeric" />
-                  <CustomDropdown
-                    data={ColorOptions}
-                    onChange={(value) => setNewAccount({ ...newAccount, color: value.value })}
-                    placeholder="Color"
-                  />
-                </>
-              )}
+                )}
+                <CustomDropdown
+                  data={MonthDays}
+                  onChange={(value) =>
+                    setNewCard({
+                      ...newCard,
+                      statementClosingDate: value.value,
+                    })
+                  }
+                  placeholder="Statement Closing Date"
+                />
+                <CustomDropdown
+                  data={MonthDays}
+                  onChange={(value) =>
+                    setNewCard({ ...newCard, paymentDueDate: value.value })
+                  }
+                  placeholder="Payment Due Date"
+                />
+                <CustomDropdown
+                  data={ColorOptions}
+                  onChange={(value) =>
+                    setNewAccount({ ...newAccount, color: value.value })
+                  }
+                  placeholder="Color"
+                />
+              </>
+            ) : (
+              <>
+                <CustomInput
+                  placeholder="Bank Name"
+                  value={newAccount.bankName}
+                  onChangeText={(text) =>
+                    setNewAccount({ ...newAccount, bankName: text })
+                  }
+                  isFixedSize={true}
+                />
+                <CustomInput
+                  placeholder="Account Name"
+                  value={newAccount.accountName}
+                  onChangeText={(text) =>
+                    setNewAccount({ ...newAccount, accountName: text })
+                  }
+                  isFixedSize={true}
+                />
+                <CustomInput
+                  placeholder="Balance"
+                  value={newAccount.balance}
+                  onChangeText={(text) =>
+                    setNewAccount({ ...newAccount, balance: text })
+                  }
+                  isFixedSize={true}
+                  keyboardType="numeric"
+                />
+                <CustomDropdown
+                  data={ColorOptions}
+                  onChange={(value) =>
+                    setNewAccount({ ...newAccount, color: value.value })
+                  }
+                  placeholder="Color"
+                />
+              </>
+            )}
             <CustomTouchable
               color="#231f20"
               text={`Add ${selectedOption === "Cards" ? "card" : "account"}`}
               whiteText={true}
               onPress={selectedOption === "Cards" ? createCard : createAccount}
             />
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        visible={cardModalVisible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={closeCardModal}
+      >
+        <View className="w-full h-full bg-white bg-opacity-50">
+          <View className="bg-red-200 pt-20 px-4">
+            {selectedOption === "Cards" ? (
+              <CreditCard card={selectedItem} index={0} />
+            ) : (
+              <DebitAccount account={selectedItem} index={0} />
+            )}
+            <ScrollView className="mt-5">
+            <RecentTransactions/>
+            </ScrollView>
+          </View>
+          <View className="absolute bottom-5 w-full px-4">
+          <CustomTouchable
+                text='Close'
+                whiteText={true}
+                color='black'
+                onPress={closeCardModal}
+              />
           </View>
         </View>
       </Modal>
@@ -249,11 +362,21 @@ export default function Cards() {
           />
           {selectedOption === "Cards" &&
             cards.map((card, index) => (
-              <CreditCard key={index} card={card} index={index} />
+              <CreditCard
+                key={index}
+                card={card}
+                index={index}
+                onPress={() => handleCardPress(card)}
+              />
             ))}
           {selectedOption === "Accounts" &&
             accounts.map((account, index) => (
-              <DebitAccount key={index} account={account} index={index} />
+              <DebitAccount
+                key={index}
+                account={account}
+                index={index}
+                onPress={() => handleCardPress(account)}
+              />
             ))}
           <View style={{ height: 100 }} />
         </ScrollView>

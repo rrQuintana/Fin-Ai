@@ -1,5 +1,6 @@
 import { FlatList, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import CustomTouchable from '@components/general/CustomTouchable'
 
 const Card = ({ title, description, icon, onPress }: { title: string, description: string, icon: any, onPress: () => void }) => {
   return (
@@ -51,20 +52,22 @@ const DiscoverMore = ({title, data}: {title: string, data: any}) => {
         <View className='flex-1 justify-center items-center bg-white bg-opacity-50' >
           <ScrollView className='w-5/5 h-2/5'>
             <View className='bg-white p-5 rounded-lg pt-16 pb-12'>
-              <View className="bg-black p-5 my-8">
+              <View className="bg-black p-5 my-8 rounded-xl">
                 <Text className='text-white text-5xl text-center'>{selectedItem?.icon}</Text>
               </View>
 
-              <Text className='text-4xl font-semibold mb-2'>{selectedItem?.title}</Text>
-              <Text className='text-gray-500 mb-5'>{selectedItem?.description}</Text>
+              <Text className='text-4xl font-semibold mb-4'>{selectedItem?.title}</Text>
+              <Text className='text-gray-500 mb-8 text-base text-justify'>{selectedItem?.description}</Text>
 
               {selectedItem?.content?.paraphs.map((para: any, index: any) => (
                 <Text key={index} className='text-gray-700 mb-5 text-justify'>{para}</Text>
               ))}
-
-              <TouchableOpacity onPress={closeModal} className='mt-4'>
-                <Text className='text-blue-500 text-center'>Cerrar</Text>
-              </TouchableOpacity>
+              <CustomTouchable
+                text='Close'
+                whiteText={true}
+                color='black'
+                onPress={closeModal}
+              />
             </View>
           </ScrollView>
         </View>

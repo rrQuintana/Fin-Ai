@@ -43,9 +43,16 @@ const sampleData = [
     date: "2021-09-05",
     category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
   },
+  {
+    name: "Netflix",
+    amount: 15,
+    type: "Gasto",
+    date: "2021-09-05",
+    category: ExpenseCategoryInfo[ExpenseCategory.SUBSCRIPTIONS_AND_SERVICES],
+  },
 ];
 
-const RecentTransactions = ({max}: {max: number}) => {
+const RecentTransactions = ({max}: {max?: number}) => {
   type Nav = {
     navigate: (value: string) => void;
   };
@@ -66,7 +73,7 @@ const RecentTransactions = ({max}: {max: number}) => {
 
       {/* Transactions List */}
       <View>
-        {sampleData.slice(0, max).map((transaction, index) => (
+        {sampleData.slice(0, max ?? sampleData.length).map((transaction, index) => (
           <SingleTransaction key={index} transaction={transaction} />
         ))}
       </View>

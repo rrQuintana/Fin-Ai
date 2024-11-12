@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { CreditCardProps } from "@interfaces/CreditCardInterface";
 
 const cardColorTranslator = (color: string) => {
@@ -23,37 +23,40 @@ const cardColorTranslator = (color: string) => {
   }
 };
 
-const CreditCard = ({ card, index }: CreditCardProps) => {
+const CreditCard = ({ card, index, onPress }: CreditCardProps) => {
   let creditUsedPercentage = 0;
-  if (card.type === "Credit" && card.creditLimit) {
-    creditUsedPercentage =
-      (card.usedCredit / card.creditLimit) *
-      100;
-  }
   const formatCurrency = (amount: number) => {
-    return `$${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+    return `$${amount?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
   };
-  const color = cardColorTranslator(card.color || "black");
+  const color = cardColorTranslator(card?.color || "black");
+
+  if (card?.type === "Credit" && card?.creditLimit) {
+    creditUsedPercentage = (card?.usedCredit / card?.creditLimit) * 100;
+  }
 
   return (
-    <View key={index} className={`${color} p-4 my-2 rounded-3xl`}>
+    <TouchableOpacity
+      key={index}
+      className={`${color} p-4 my-2 rounded-3xl`}
+      onPress={onPress}
+    >
       <View className="flex-row justify-between">
         <Text className="text-white text-xl font-semibold">
-          {card.bankName}
+          {card?.bankName}
         </Text>
         <Text className="text-white text-xl font-semibold">
-          {formatCurrency(card.usedCredit)}
+          {formatCurrency(card?.usedCredit)}
         </Text>
       </View>
       <View className="flex-row justify-between items-center mb-2">
         <Text className="text-white text-lg text-center">
-          {card.cardName} - {card.type}
+          {card?.cardName} - {card?.type}
         </Text>
         <Text className="text-white text-md font-semibold text-center">
-          {card.creditLimit ? formatCurrency(card.creditLimit) : ""}
+          {card?.creditLimit ? formatCurrency(card?.creditLimit) : ""}
         </Text>
       </View>
-      {card.type === "Credit" ? (
+      {card?.type === "Credit" ? (
         <View className="my-2">
           <View className="flex-row h-2 w-full bg-gray-600 rounded-full overflow-hidden">
             <View
@@ -84,17 +87,17 @@ const CreditCard = ({ card, index }: CreditCardProps) => {
             Statement Closing Date:
           </Text>
           <Text className="text-white text-lg">
-            {card.statementClosingDate}
+            {card?.statementClosingDate}
           </Text>
         </View>
         <View className="flex-row justify-between items-center">
           <Text className="text-white text-lg font-semibold">
             Payment Due Date:
           </Text>
-          <Text className="text-white text-lg">{card.paymentDueDate}</Text>
+          <Text className="text-white text-lg">{card?.paymentDueDate}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

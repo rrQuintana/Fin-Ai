@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { DebitAccountProps } from "@interfaces/DebitAccountInterface";
 
 const cardColorTranslator = (color: string) => {
@@ -23,7 +23,7 @@ const cardColorTranslator = (color: string) => {
   }
 };
 
-const DebitAccount = ({ account, index }: DebitAccountProps) => {
+const DebitAccount = ({ account, index, onPress }: DebitAccountProps) => {
   const color = cardColorTranslator(account.color || "black");
 
   function formatCurrency(amount: number | undefined) {
@@ -34,7 +34,7 @@ const DebitAccount = ({ account, index }: DebitAccountProps) => {
   }
 
   return (
-    <View key={index} className={`${color} p-4 my-2 rounded-3xl`}>
+    <TouchableOpacity key={index} className={`${color} p-4 my-2 rounded-3xl`} onPress={onPress}>
       <View className="flex-row justify-between">
         <Text className="text-white text-2xl font-semibold">
           {account.bankName}
@@ -48,7 +48,7 @@ const DebitAccount = ({ account, index }: DebitAccountProps) => {
           {account.accountName}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

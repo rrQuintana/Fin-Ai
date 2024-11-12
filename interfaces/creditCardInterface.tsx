@@ -12,6 +12,7 @@ export interface CreditCardInterface {
 export interface CreditCardProps {
   card: CreditCardInterface;
   index: number;
+  onPress?: () => void;
 }
 
 export const MonthDays = [

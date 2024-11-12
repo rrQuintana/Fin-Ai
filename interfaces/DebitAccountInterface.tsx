@@ -9,4 +9,5 @@ export interface DebitAccountInterface {
 export interface DebitAccountProps {
     account: DebitAccountInterface;
     index: number;
+    onPress?: () => void;
   }
