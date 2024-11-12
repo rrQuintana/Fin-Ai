@@ -155,7 +155,7 @@ export const sampleAccounts: DebitAccountInterface[] = [
     transactions: [
       {
         name: "Starbucks",
-        amount: 80,
+        amount: 50,
         type: "Expense",
         date: "2021-07-01",
         category: ExpenseCategoryInfo.ONLINE_SHOPPING,

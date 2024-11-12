@@ -7,6 +7,7 @@ import RecentTransactions from "@components/home/RecentTransactions";
 import DiscoverMore from "@components/home/DiscoverMore";
 import { investmentProducts, learnData } from "src/utils/learn";
 import { userCredit } from "@interfaces/userInterface";
+import { sampleTransactions } from "@interfaces/TransactionInterface";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
             <FinancialCard userCredit={userCredit} />
             <Options />
             <Divider />
-            <RecentTransactions max={2}/>
+            <RecentTransactions max={2} sampleTransactions={sampleTransactions}/>
           </View>
           <Divider />
           <DiscoverMore title="Investment products" data={investmentProducts} />

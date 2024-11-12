@@ -261,7 +261,7 @@ export default function Cards() {
               <DebitAccount account={selectedItem} index={0} />
             )}
             <ScrollView className="mt-5">
-            <RecentTransactions max={4} hideButton/>
+            <RecentTransactions max={4} hideButton sampleTransactions={selectedItem?.transactions}/>
             </ScrollView>
           </View>
           <View className="absolute bottom-5 w-full px-4">

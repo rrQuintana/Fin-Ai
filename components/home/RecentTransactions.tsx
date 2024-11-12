@@ -2,9 +2,9 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import SingleTransaction from "@components/transactions/SingleTransaction";
-import { sampleTransactions } from "@interfaces/TransactionInterface";
+import {TransactionInterface} from "@interfaces/TransactionInterface";
 
-const RecentTransactions = ({max, hideButton}: {max?: number, hideButton?: boolean}) => {
+const RecentTransactions = ({max, hideButton, sampleTransactions}: {max?: number, hideButton?: boolean, sampleTransactions: TransactionInterface[]}) => {
   type Nav = {
     navigate: (value: string) => void;
   };
@@ -25,7 +25,7 @@ const RecentTransactions = ({max, hideButton}: {max?: number, hideButton?: boole
 
       {/* Transactions List */}
       <View>
-        {sampleTransactions.slice(0, max ?? sampleTransactions.length).map((transaction, index) => (
+        {sampleTransactions?.slice(0, max ?? sampleTransactions?.length).map((transaction, index) => (
           <SingleTransaction key={index} transaction={transaction} />
         ))}
       </View>
