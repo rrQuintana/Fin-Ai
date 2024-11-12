@@ -32,10 +32,12 @@ export default function Login() {
     }
   }
 
+  const [pivote, setPivote] = useState(false);
+
   const isFirstLaunch = useOnboardingStatus();
 
-  if (isFirstLaunch) {
-    return (<Landing />);
+  if (isFirstLaunch && !pivote) {
+    return (<Landing setPivote={setPivote} />);
   }
 
   return (

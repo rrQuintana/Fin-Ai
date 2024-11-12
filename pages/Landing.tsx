@@ -5,7 +5,7 @@ import LargeLogo from "@assets/images/largeLogo.svg";
 import { useRef, useState } from "react";
 
 
-export default function Landing() {
+export default function Landing({ setPivote }: { setPivote: (value: boolean) => void }) {
 
 
   const { width, height } = Dimensions.get("window");
@@ -35,6 +35,8 @@ export default function Landing() {
     if (currentIndex < onboardingData.length - 1) {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
       setCurrentIndex(currentIndex + 1);
+    } else {
+      setPivote(true)
     }
   };
 
