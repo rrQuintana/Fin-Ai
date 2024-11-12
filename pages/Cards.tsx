@@ -11,16 +11,12 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CreditCard from "@components/home/CreditCard";
 import DebitAccount from "@components/home/DebitAccount";
-import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import CustomInput from "@components/general/CustomInput";
 import CustomTouchable from "@components/general/CustomTouchable";
 import CustomRadio from "@components/general/CustomRadio";
-import {
-  ColorOptions,
-  CreditCardInterface,
-  MonthDays,
-} from "@interfaces/CreditCardInterface";
 import RecentTransactions from "@components/home/RecentTransactions";
+import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
+import { ColorOptions, CreditCardInterface, MonthDays } from "../interfaces/creditCardInterface";
 
 const cards: CreditCardInterface[] = [
   {

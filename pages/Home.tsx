@@ -6,6 +6,7 @@ import Divider from "@components/general/Divider";
 import RecentTransactions from "@components/home/RecentTransactions";
 import DiscoverMore from "@components/home/DiscoverMore";
 import { investmentProducts, learnData } from "src/utils/learn";
+import { userCredit } from "@interfaces/userInterface";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
           showsVerticalScrollIndicator={false}
         >
           <View className="px-4">
-            <FinancialCard />
+            <FinancialCard userCredit={userCredit} />
             <Options />
             <Divider />
             <RecentTransactions max={2}/>

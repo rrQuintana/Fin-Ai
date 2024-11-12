@@ -59,9 +59,9 @@ export type Transaction = {
     let balance = 0;
   
     transactions.forEach((transaction: any) => {
-      if (transaction.type === 'Ingreso') {
+      if (transaction.type === 'Expense') {
         balance += transaction.amount;
-      } else if (transaction.type === 'Gasto') {
+      } else if (transaction.type === 'Income') {
         balance -= transaction.amount; 
       }
     });
@@ -97,7 +97,7 @@ export type Transaction = {
     const grouped: { [key: string]: Transaction[] } = {};
   
     transactions.forEach((transaction) => {
-      if (transaction.type !== "Gasto") return;  // Filtra solo transacciones de tipo "Gasto"
+      if (transaction.type !== "Expense") return;  // Filtra solo transacciones de tipo "Gasto"
   
       const categoryName = transaction.category.name;
   
