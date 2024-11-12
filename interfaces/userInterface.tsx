@@ -52,7 +52,6 @@ const sampleCards: CreditCardInterface[] = [
     bankName: "Bank of America",
     type: "Credit",
     cardName: "Travel Rewards",
-    usedCredit: 14000,
     creditLimit: 32000,
     statementClosingDate: 25,
     paymentDueDate: 15,
@@ -66,18 +65,20 @@ const sampleCards: CreditCardInterface[] = [
       },
       {
         name: "Best Buy",
-        amount: 3000,
+        amount: 400,
         type: "Expense",
         date: "2021-07-02",
         category: ExpenseCategoryInfo.ONLINE_SHOPPING,
       },
     ],
+    get usedCredit() {
+      return this.transactions?.reduce((acc, transaction) => acc + transaction.amount, 0) ?? 0;
+    },
   },
   {
     bankName: "Chase",
     type: "Credit",
     cardName: "Freedom Unlimited",
-    usedCredit: 20000,
     creditLimit: 55000,
     statementClosingDate: 20,
     paymentDueDate: 10,
@@ -85,7 +86,7 @@ const sampleCards: CreditCardInterface[] = [
     transactions: [
       {
         name: "Amazon",
-        amount: 1000,
+        amount: 2000,
         type: "Expense",
         date: "2021-07-01",
         category: ExpenseCategoryInfo.ONLINE_SHOPPING,
@@ -98,12 +99,14 @@ const sampleCards: CreditCardInterface[] = [
         category: ExpenseCategoryInfo.TRANSPORT_AND_VEHICLES,
       },
     ],
+    get usedCredit() {
+      return this.transactions?.reduce((acc, transaction) => acc + transaction.amount, 0) ?? 0;
+    },
   },
   {
     bankName: "American Express",
     type: "Charge",
     cardName: "Platinum Card",
-    usedCredit: 12300,
     statementClosingDate: 29,
     paymentDueDate: 9,
     color: "gray",
@@ -123,6 +126,9 @@ const sampleCards: CreditCardInterface[] = [
         category: ExpenseCategoryInfo.ONLINE_SHOPPING,
       },
     ],
+    get usedCredit() {
+      return this.transactions?.reduce((acc, transaction) => acc + transaction.amount, 0) ?? 0;
+    },
   },
 ];
 const sampleAccounts: DebitAccountInterface[] = [

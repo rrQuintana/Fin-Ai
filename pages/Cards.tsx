@@ -17,56 +17,7 @@ import CustomRadio from "@components/general/CustomRadio";
 import RecentTransactions from "@components/home/RecentTransactions";
 import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import { ColorOptions, CreditCardInterface, MonthDays } from "@interfaces/CreditCardInterface";
-
-const cards: CreditCardInterface[] = [
-  {
-    bankName: "Bank of America",
-    type: "Credit",
-    cardName: "Travel Rewards",
-    usedCredit: 14000,
-    creditLimit: 32000,
-    statementClosingDate: 25,
-    paymentDueDate: 15,
-  },
-  {
-    bankName: "Chase",
-    type: "Credit",
-    cardName: "Freedom Unlimited",
-    usedCredit: 20000,
-    creditLimit: 55000,
-    statementClosingDate: 20,
-    paymentDueDate: 10,
-    color: "blue",
-  },
-  {
-    bankName: "American Express",
-    type: "Charge",
-    cardName: "Platinum Card",
-    usedCredit: 12300,
-    statementClosingDate: 29,
-    paymentDueDate: 9,
-    color: "gray",
-  },
-];
-const accounts: DebitAccountInterface[] = [
-  {
-    bankName: "Chase",
-    accountName: "Checking",
-    balance: 14000,
-    color: "blue",
-  },
-  {
-    bankName: "Bank of America",
-    accountName: "Savings",
-    balance: 20000,
-  },
-  {
-    bankName: "Wells Fargo",
-    accountName: "Checking",
-    balance: 12300,
-    color: "red",
-  },
-];
+import { sampleUser } from "@interfaces/UserDataInterface";
 
 export default function Cards() {
   type Nav = {
@@ -126,13 +77,13 @@ export default function Cards() {
   const createCard = () => {
     newCard.usedCredit = parseFloat(newCard.usedCredit.toString());
     newCard.creditLimit = parseFloat((newCard.creditLimit ?? 0).toString());
-    cards.push(newCard);
+    sampleUser.creditCards.push(newCard);
     closeModal();
   };
 
   const createAccount = () => {
     newAccount.balance = parseFloat(newAccount.balance.toString());
-    accounts.push(newAccount);
+    sampleUser.debitAccounts.push(newAccount);
     closeModal();
   };
 
@@ -357,7 +308,7 @@ export default function Cards() {
             onPressOption2={() => setSelectedOption("Accounts")}
           />
           {selectedOption === "Cards" &&
-            cards.map((card, index) => (
+            sampleUser.creditCards.map((card, index) => (
               <CreditCard
                 key={index}
                 card={card}
@@ -366,7 +317,7 @@ export default function Cards() {
               />
             ))}
           {selectedOption === "Accounts" &&
-            accounts.map((account, index) => (
+            sampleUser.debitAccounts.map((account, index) => (
               <DebitAccount
                 key={index}
                 account={account}
