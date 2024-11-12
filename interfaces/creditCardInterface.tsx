@@ -1,3 +1,5 @@
+import { TransactionInterface } from "./TransactionInterface";
+
 export interface CreditCardInterface {
   bankName: string;
   creditLimit?: number;
@@ -7,6 +9,7 @@ export interface CreditCardInterface {
   statementClosingDate: number;
   paymentDueDate: number;
   color?: "green" | "yellow" | "red" | "blue" | "black" | "white" | "gray";
+  transactions: TransactionInterface[];
 }
 
 export interface CreditCardProps {
