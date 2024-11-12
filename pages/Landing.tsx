@@ -13,18 +13,18 @@ export default function Landing({ setPivote }: { setPivote: (value: boolean) => 
   const onboardingData = [
     {
       emoji: "🎯",
-      title: "Define tus Metas Financieras",
-      description: "Establece objetivos claros, como ahorrar para una casa o prepararte para el retiro. Nuestro asistente financiero te ayudará a crear un plan personalizado para alcanzar cada meta.",
+      title: "Define Your Financial Goals",
+      description: "Set clear objectives, such as saving for a house or preparing for retirement. Our financial assistant will help you create a personalized plan to achieve each goal.",
     },
     {
       emoji: "🚀",
-      title: "Recibe Recomendaciones Inteligentes",
-      description: "Descubre productos financieros y consejos personalizados para mejorar tu situación financiera. La app analiza tus hábitos y necesidades para ofrecerte la mejor orientación.",
+      title: "Receive Smart Recommendations",
+      description: "Discover financial products and personalized advice to improve your financial situation. The app analyzes your habits and needs to offer you the best guidance.",
     },
     {
       emoji: "📊",
-      title: "Monitorea tu Progreso y Mantente Enfocado",
-      description: "Con herramientas de seguimiento y alertas en tiempo real, podrás ver cómo avanzas hacia tus metas y recibir recordatorios para mantenerte en el camino.",
+      title: "Monitor Your Progress and Stay Focused",
+      description: "With tracking tools and real-time alerts, you can see how you are progressing towards your goals and receive reminders to stay on track.",
     },
   ];
 
@@ -49,11 +49,11 @@ export default function Landing({ setPivote }: { setPivote: (value: boolean) => 
   );
 
   return (
-    <View className="flex bg-black">
+    <View className="flex bg-[#231f20]">
       <View className="w-full h-2/5 bg-[#231f20] justify-center items-center p-16">
         <Image source={require('../assets/images/logo.png')} className="w-full h-full mt-10" />
       </View>
-      <View className="w-full h-3/5 items-center bg-white rounded-t-2xl py-12">
+      <View className="w-full h-3/5 items-center bg-white rounded-t-3xl py-12">
         <FlatList
           ref={flatListRef}
           data={onboardingData}
@@ -77,7 +77,7 @@ export default function Landing({ setPivote }: { setPivote: (value: boolean) => 
         </View>
         <TouchableOpacity onPress={handleNext} className="bg-black p-5 rounded-full w-11/12 mt-auto items-center">
           <Text className="text-white text-lg font-semibold">
-            {currentIndex === onboardingData.length - 1 ? "Empezar" : "Siguiente"}
+            {currentIndex === onboardingData.length - 1 ? "Get Started" : "Next"}
           </Text>
         </TouchableOpacity>
       </View>

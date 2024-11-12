@@ -3,51 +3,20 @@ import { useNavigation } from "@react-navigation/native";
 import PageLayout from "@components/layout/PageLayout";
 import React, { useState, useRef } from "react";
 import CustomInput from "@components/general/CustomInput";
-import CustomTouchable from "@components/general/CustomTouchable";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useUser } from "@hooks/useUser";
 
 const MockChat = [
   {
     id: 1,
-    sender: "User",
+    sender: "Luis Morales",
     message: "Hello!",
   },
   {
     id: 2,
-    sender: "Bot",
+    sender: "FinAI",
     message: "Hi there! How can I help you today?",
   },
-  {
-    id: 3,
-    sender: "User",
-    message: "I need help with my account.",
-  },
-  {
-    id: 4,
-    sender: "Bot",
-    message: "Sure! Please provide me with your account number.",
-  },
-  {
-    id: 5,
-    sender: "User",
-    message: "123456789",
-  },
-  {
-    id: 6,
-    sender: "Bot",
-    message: "Thank you! Please wait a moment.",
-  },
-  {
-    id: 7,
-    sender: "User",
-    message: "I need help with my recent transactions.",
-  },
-  {
-    id: 8,
-    sender: "Bot",
-    message: "Sure! Please wait a moment.",
-  },
-
 ];
 
 export default function Chat() {
@@ -58,6 +27,7 @@ export default function Chat() {
   const { navigate } = useNavigation<Nav>();
   const [newMessage, setNewMessage] = useState("");
   const [chat, setChat] = useState(MockChat);
+  const { username } = useUser();
 
   // Create a reference for the ScrollView
   const scrollViewRef = useRef<ScrollView>(null);
@@ -79,18 +49,18 @@ export default function Chat() {
       scrollViewRef.current?.scrollToEnd({ animated: true });
     }, 100);
 
-    // Add the bot's response with a delay
+    // Add the FinAI's response with a delay
     setTimeout(() => {
       setChat((prevChat) => [
         ...prevChat,
         {
           id: prevChat.length + 1,
-          sender: "Bot",
+          sender: "FinAI",
           message: "I'm sorry, I'm not able to help you with that.",
         },
       ]);
 
-      // Scroll to the end after the bot's reply
+      // Scroll to the end after the FinAI's reply
       setTimeout(() => {
         scrollViewRef.current?.scrollToEnd({ animated: true });
       }, 100);
@@ -98,12 +68,12 @@ export default function Chat() {
   };
 
   return (
-    <PageLayout title="Chat" display={true}>
+    <PageLayout title="FinAI Chat" display={true}>
       <>
         <View style={{ height: "85%" }}>
           <ScrollView
             contentContainerStyle={{
-              paddingBottom: 100,
+              paddingBottom: 10,
             }}
             showsVerticalScrollIndicator={false}
             ref={scrollViewRef}
