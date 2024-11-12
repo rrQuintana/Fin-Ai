@@ -41,7 +41,7 @@ export default function Login() {
   }
 
   return (
-    <SafeAreaView className="bg-[#231f20]">
+    <SafeAreaView className="bg-[#231f20] flex-1 items-center justify-center">
       <View
         style={{ borderTopRightRadius: 70, borderTopLeftRadius: 70 }}
         className="bg-white p-4 w-screen h-screen mt-32 items-center justify-start"
