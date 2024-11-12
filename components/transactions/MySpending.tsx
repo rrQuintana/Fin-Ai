@@ -2,6 +2,7 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { BarChart } from 'react-native-chart-kit';
 import { generateChartDataFromGroupedTransactions, groupTransactionsByDate } from '@src/utils/groupTransactions';
+import { userCredit } from '@interfaces/userInterface';
 
 const MySpending = ({ data }: {data: any}) => {
   // Agrupar las transacciones por fecha
@@ -42,12 +43,16 @@ const MySpending = ({ data }: {data: any}) => {
     xAxisLabel: false
   };
 
+  const formatCurrency = (amount: number) => {
+    return `$${amount?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
+  };
+
   return (
     <View className="shadow bg-white px-5 rounded-3xl mb-8 mt-3">
       <View className='flex flex-row justify-center items-center'>
         <View className='me-2'>
-          <Text>Mis gastos del mes</Text>
-          <Text className="text-3xl my-3">- $7,034.21</Text>
+          <Text>My Spending</Text>
+          <Text className="text-3xl my-3">{formatCurrency(parseInt(userCredit.currentExpenses.replace("$", "")))}</Text>
         </View>
         <View className="ms-2">
           <BarChart

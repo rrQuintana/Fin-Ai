@@ -33,17 +33,19 @@ export type Transaction = {
   };
   
   export const generateChartDataFromGroupedTransactions = (groupedTransactions: GroupedTransaction[]): ChartData => {
-    // Filtrar las transacciones de tipo 'Gasto' y sumar el 'amount' por fecha
     const labels: string[] = [];
     const data: number[] = [];
   
-    groupedTransactions.forEach(group => {
-      const gastos = group.transactions.filter(transaction => transaction.type === 'Gasto');
-      const totalGastos = gastos.reduce((sum, transaction) => sum + transaction.amount, 0);
+    groupedTransactions.forEach((group) => {
+      const expenses = group.transactions.filter((transaction) => transaction.type === 'Expense'); // Check if type matches
+      const totalExpenses = expenses.reduce((sum, transaction) => sum + transaction.amount, 0);
   
       labels.push(group.date);
-      data.push(totalGastos);
+      data.push(totalExpenses);
     });
+  
+    console.log("Labels:", labels); // Log labels to check dates
+    console.log("Data:", data); // Log data to check amounts
   
     return {
       labels,

@@ -1,25 +1,28 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { calculateBalance, groupExpencesByCategory } from '@src/utils/groupTransactions';
+import { groupExpencesByCategory } from '@src/utils/groupTransactions';
 
-const Expense = ({ data }: {data: any}) => {
-  // Calcular el balance total
-  const total = calculateBalance(data);
-  const categories = groupExpencesByCategory(data);
+const Expense = ({ data, transactions }: {data: any, transactions: any}) => {
+
+  const formatCurrency = (amount: number) => {
+    return `$${amount?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
+  };
+
+  const groupedExpenses = groupExpencesByCategory(transactions);
 
   return (
     <View className="px-2 mt-2">
       <View className="flex flex-row justify-between items-center mb-4">
-        <Text className="font-medium text-lg">Estado del mes</Text>
+        <Text className="font-medium text-lg">Monthly Expenses</Text>
       </View>
-      <Text className="text-4xl font-semibold">{total}</Text>
+      <Text className="text-4xl font-semibold">{formatCurrency(parseInt(data?.usedCredit.replace("$", "")))}</Text>
       <View className="my-6">
-        {categories.map((category, index) => (
+      {groupedExpenses.slice(0, 4).map((category, index) => (
           <View key={index} className="mb-2 flex flex-row justify-between">
-            <Text className="text-sm font-semibold text-gray-700">{category.categoryName}</Text>
-            <Text className="text-sm font-semibold text-blue-600">
-              {category.totalAmount}
-            </Text>
+        <Text className="text-sm font-semibold text-gray-700">{category.categoryName}</Text>
+        <Text className="text-sm font-semibold text-blue-600">
+          {category.totalAmount}
+        </Text>
           </View>
         ))}
       </View>

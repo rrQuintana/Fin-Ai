@@ -17,6 +17,16 @@ const MockChat = [
     sender: "FinAI",
     message: "Hi there! How can I help you today?",
   },
+  {
+    id: 3,
+    sender: "User",
+    message: "I need to know if I can afford a new car.",
+  },
+  {
+    id: 4,
+    sender: "FinAI",
+    message: "Based on your budget, I would recommend saving up for a few more months before making a decision.",
+  },
 ];
 
 export default function Chat() {
@@ -56,7 +66,7 @@ export default function Chat() {
         {
           id: prevChat.length + 1,
           sender: "FinAI",
-          message: "I'm sorry, I'm not able to help you with that.",
+          message: "You're welcome!",
         },
       ]);
 

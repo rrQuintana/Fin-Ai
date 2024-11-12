@@ -7,7 +7,7 @@ import RecentTransactions from "@components/home/RecentTransactions";
 import DiscoverMore from "@components/home/DiscoverMore";
 import { investmentProducts, learnData } from "src/utils/learn";
 import { userCredit } from "@interfaces/userInterface";
-import { sampleTransactions } from "@interfaces/TransactionInterface";
+import { sampleUser } from "@interfaces/UserDataInterface";
 
 export default function Home() {
   return (
@@ -19,12 +19,18 @@ export default function Home() {
           }}
           showsVerticalScrollIndicator={false}
         >
-          <View className="px-4">
+            <View className="px-4">
             <FinancialCard userCredit={userCredit} />
             <Options />
             <Divider />
-            <RecentTransactions max={2} sampleTransactions={sampleTransactions}/>
-          </View>
+            <RecentTransactions
+              max={2}
+              sampleTransactions={[
+              ...sampleUser.creditCards.flatMap(card => card.transactions ?? []),
+              ...sampleUser.debitAccounts.flatMap(account => account.transactions ?? []),
+              ]}
+            />
+            </View>
           <Divider />
           <DiscoverMore title="Investment products" data={investmentProducts} />
           <Divider />

@@ -23,6 +23,8 @@ import CustomInput from "@components/general/CustomInput";
 import CustomRadio from "@components/general/CustomRadio";
 import { sampleTransactions, TransactionInterface, TransactionProps } from "@interfaces/TransactionInterface";
 import CustomDropdown from "@components/general/CustomDropdown";
+import { sampleUser } from "@interfaces/UserDataInterface";
+import { userCredit } from "@interfaces/userInterface";
 
 export default function Transaction() {
   type Nav = {
@@ -75,29 +77,6 @@ export default function Transaction() {
   return (
     <PageLayout title="Transactions" display={true}>
       <>
-        {/* <TouchableOpacity
-          style={{
-            position: "absolute",
-            bottom: 16 * 14,
-            right: 20,
-            width: 50,
-            height: 50,
-            backgroundColor: "black",
-            borderRadius: 30,
-            justifyContent: "center",
-            alignItems: "center",
-            elevation: 5,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.25,
-            zIndex: 1,
-          }}
-          onPress={() => setModalVisible(true)}
-        >
-          <Text style={{ color: "#fff", fontSize: 30, fontWeight: "bold" }}>
-            +
-          </Text>
-        </TouchableOpacity> */}
         <ScrollView
           contentContainerStyle={{
             paddingBottom: 100,
@@ -105,7 +84,10 @@ export default function Transaction() {
           showsVerticalScrollIndicator={false}
         >
           <View className=" px-4">
-            <Expense data={sampleTransactions}/>
+            <Expense data={userCredit} transactions={[
+              ...sampleUser.creditCards.flatMap(card => card.transactions ?? []),
+              ...sampleUser.debitAccounts.flatMap(account => account.transactions ?? []),
+              ]}/>
             <CustomTouchable
               text="Add transaction  +"
               color="#231f20"
@@ -113,8 +95,10 @@ export default function Transaction() {
               onPress={() => setModalVisible(true)}
             />
             <MySpending data={sampleTransactions} />
-            <RecentActivity data={sampleTransactions} />
-
+            <RecentActivity data={[
+              ...sampleUser.creditCards.flatMap(card => card.transactions ?? []),
+              ...sampleUser.debitAccounts.flatMap(account => account.transactions ?? []),
+              ]}/>
             <Modal
               visible={modalVisible}
               animationType="fade"

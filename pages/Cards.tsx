@@ -197,7 +197,7 @@ export default function Cards() {
                 <CustomDropdown
                   data={ColorOptions}
                   onChange={(value) =>
-                    setNewAccount({ ...newAccount, color: value.value })
+                    setNewCard({ ...newCard, color: value.value })
                   }
                   placeholder="Color"
                 />
