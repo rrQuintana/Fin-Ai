@@ -13,7 +13,26 @@
     },
     "categories": {
       "auth": {
+        "finaiwebsite": {},
         "finAIwonder": {}
+      },
+      "api": {
+        "finaiwebsite": {},
+        "finAIwonderObUserData": {}
+      },
+      "function": {
+        "clientesFunction": {},
+        "finAIwonderObUserData": {
+          "deploymentBucketName": "amplify-finaiwonder-staging-4d672-deployment",
+          "s3Key": "amplify-builds/finAIwonderObUserData-516f6e4a42336a6c5735-build.zip"
+        },
+        "finAIwonderObUserDataTrigger0a7c3773": {
+          "deploymentBucketName": "amplify-finaiwonder-staging-4d672-deployment",
+          "s3Key": "amplify-builds/finAIwonderObUserDataTrigger0a7c3773-667471624e57316d7475-build.zip"
+        }
+      },
+      "storage": {
+        "finAIwonderObUserData": {}
       }
     }
   }

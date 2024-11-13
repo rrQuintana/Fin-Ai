@@ -1,24 +1,40 @@
 {
   "expo": {
-    "scheme": "acme",
-    "userInterfaceStyle": "automatic",
-    "orientation": "default",
-    "web": {
-      "output": "static",
-      "bundler": "metro"
+    "name": "finAI",
+    "slug": "finAI",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/finailogo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/finailogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#231f20"
     },
-    "plugins": [
-      [
-        "expo-router",
-        {
-          "origin": "https://n"
-        }
-      ]
+    "assetBundlePatterns": [
+      "**/*"
     ],
-    "name": "fin-ai",
-    "slug": "fin-ai",
     "ios": {
-      "bundleIdentifier": "com.rrquintanakn.fin-ai"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.finai-clientss",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAPZ9WUb4o9x3W2ngm3iqYzlM5qOuV_qAQ"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#231f20"
+      },
+      "package": "com.wonder.finai_clientss",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyC0IiarrU2S1wsxhl0aylq-nf8w3wIXwfU"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
     }
   }
 }

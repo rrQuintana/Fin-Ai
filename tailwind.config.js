@@ -1,16 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/**/*.{js,jsx,ts,tsx}"],
-  presets: [require("nativewind/preset")],
+  content: ["./App.tsx", "./components/**/*.tsx", "./pages/*.tsx"],
   theme: {
     extend: {
       colors: {
-        WaTou: "#1C759E",
+        finai: "#231f20",
       },
     },
-  },
-  future: {
-    hoverOnlyWhenSupported: true,
   },
   plugins: [],
 };
