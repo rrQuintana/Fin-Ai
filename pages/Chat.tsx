@@ -14,30 +14,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useUser } from "@hooks/useUser";
 import { useLLM, LLAMA3_2_1B_URL, ChatMessage } from "react-native-executorch";
 
-const MockChat = [
-  {
-    id: 1,
-    sender: "User",
-    message: "Hello!",
-  },
-  {
-    id: 2,
-    sender: "FinAI",
-    message: "Hi there! How can I help you today?",
-  },
-  {
-    id: 3,
-    sender: "User",
-    message: "I need to know if I can afford a new car.",
-  },
-  {
-    id: 4,
-    sender: "FinAI",
-    message:
-      "Based on your budget, I would recommend saving up for a few more months before making a decision.",
-  },
-];
-
 export default function Chat() {
   type Nav = {
     navigate: (value: string) => void;
