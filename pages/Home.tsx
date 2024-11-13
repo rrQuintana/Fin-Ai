@@ -8,8 +8,15 @@ import DiscoverMore from "@components/home/DiscoverMore";
 import { investmentProducts, learnData } from "src/utils/learn";
 import { userCredit } from "@interfaces/userInterface";
 import { sampleUser } from "@interfaces/UserDataInterface";
+import { useGetAllCreditCards } from "@hooks/cards/credit/useGetAllCreditCards";
+import { useGetAllDebitAccounts } from "@hooks/cards/debit/useGetAllDebitAccounts";
 
 export default function Home() {
+  const { data: creditCards, isLoading } = useGetAllCreditCards();
+  const { data: debitAccounts, isLoading: isLoadingDebit } = useGetAllDebitAccounts();
+
+  if(isLoading || isLoadingDebit) return <Text>Loading...</Text>;
+
   return (
     <PageLayout title="Finances" display={true}>
       <>
@@ -26,8 +33,8 @@ export default function Home() {
             <RecentTransactions
               max={2}
               sampleTransactions={[
-              ...sampleUser.creditCards.flatMap(card => card.transactions ?? []),
-              ...sampleUser.debitAccounts.flatMap(account => account.transactions ?? []),
+              ...creditCards?.flatMap(card => card.transactions ?? []) ?? [],
+              ...(debitAccounts?.flatMap(account => account.transactions ?? []) ?? []),
               ]}
             />
             </View>
