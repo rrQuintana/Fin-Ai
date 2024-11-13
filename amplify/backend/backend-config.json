@@ -1,4 +1,20 @@
 {
+  "api": {
+    "finAIwonderObUserData": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "finAIwonderObUserData"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "finAIwonder": {
       "customAuth": false,
@@ -28,6 +44,83 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "finAIwonderObUserData": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "finAIwonderObUserData"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "finAIwonderObUserDataTrigger0a7c3773": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "finAIwonderObUserData"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_finAIwonderObUserDataTrigger0a7c3773_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "finAIwonderObUserDataTrigger0a7c3773"
+        }
+      ]
+    },
+    "AMPLIFY_function_finAIwonderObUserDataTrigger0a7c3773_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "finAIwonderObUserDataTrigger0a7c3773"
+        }
+      ]
+    },
+    "AMPLIFY_function_finAIwonderObUserData_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "finAIwonderObUserData"
+        }
+      ]
+    },
+    "AMPLIFY_function_finAIwonderObUserData_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "finAIwonderObUserData"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "finAIwonderObUserData": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }
