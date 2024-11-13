@@ -1,39 +1,25 @@
-import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import PageLayout from "@components/layout/PageLayout";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CustomInput from "@components/general/CustomInput";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useUser } from "@hooks/useUser";
-
-const MockChat = [
-  {
-    id: 1,
-    sender: "User",
-    message: "Hello!",
-  },
-  {
-    id: 2,
-    sender: "FinAI",
-    message: "Hi there! How can I help you today?",
-  },
-  {
-    id: 3,
-    sender: "User",
-    message: "I need to know if I can afford a new car.",
-  },
-  {
-    id: 4,
-    sender: "FinAI",
-    message: "Based on your budget, I would recommend saving up for a few more months before making a decision.",
-  },
-];
+import { useLLM, LLAMA3_2_1B_URL, ChatMessage } from "react-native-executorch";
 
 export default function Chat() {
   type Nav = {
     navigate: (value: string) => void;
   };
 
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const { navigate } = useNavigation<Nav>();
   const [newMessage, setNewMessage] = useState("");
   const [chat, setChat] = useState(MockChat);
@@ -42,40 +28,38 @@ export default function Chat() {
   // Create a reference for the ScrollView
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const handleSendMessage = () => {
-    // Add the user's message to the chat
-    setChat((prevChat) => [
-      ...prevChat,
-      {
-        id: prevChat.length + 1,
-        sender: "User",
-        message: newMessage,
-      },
+  const [userInput, setUserInput] = useState("");
+  const llama = useLLM({
+    modelSource: LLAMA3_2_1B_QLORA_URL,
+    tokenizerSource: require("../assets/tokenizer.bin"),
+    contextWindowLength: 6,
+  });
+  const textInputRef = useRef<TextInput>(null);
+  useEffect(() => {
+    if (llama.response && !llama.isModelGenerating) {
+      appendToMessageHistory(llama.response, "ai");
+    }
+  }, [llama.response, llama.isModelGenerating]);
+
+  const appendToMessageHistory = (input: string, role: SenderType) => {
+    setChatHistory((prevHistory) => [
+      ...prevHistory,
+      { text: input, from: role },
     ]);
-    setNewMessage("");
-
-    // Scroll to the end after the user's message
-    setTimeout(() => {
-      scrollViewRef.current?.scrollToEnd({ animated: true });
-    }, 100);
-
-    // Add the FinAI's response with a delay
-    setTimeout(() => {
-      setChat((prevChat) => [
-        ...prevChat,
-        {
-          id: prevChat.length + 1,
-          sender: "FinAI",
-          message: "You're welcome!",
-        },
-      ]);
-
-      // Scroll to the end after the FinAI's reply
-      setTimeout(() => {
-        scrollViewRef.current?.scrollToEnd({ animated: true });
-      }, 100);
-    }, 500);
   };
+
+  const sendMessage = async () => {
+    appendToMessageHistory(userInput.trim(), "user");
+    setUserInput("");
+    textInputRef.current?.clear();
+    try {
+      await llama.generate(userInput);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  
 
   return (
     <PageLayout title="FinAI Chat" display={true}>
@@ -88,18 +72,22 @@ export default function Chat() {
             showsVerticalScrollIndicator={false}
             ref={scrollViewRef}
           >
-            {chat.map((chat) => (
-                <View
-                key={chat.id}
-                className={`mb-5 py-4 px-4 mx-4 rounded-3xl ${
-                  chat.sender === "User" ? "self-end bg-[#231f20]" : "self-start bg-gray-300"
-                }`}
-                >
-                <Text
-                className={`${chat.sender === "User" ? "text-right text-gray-200" : "text-left"}`}
-                >{`${chat.sender}: ${chat.message}`}</Text>
-                </View>
-            ))}
+            {chatHistory.length ? (
+            <View>
+              <Messages
+                chatHistory={chatHistory}
+                llmResponse={llama.response}
+                isModelGenerating={llama.isModelGenerating}
+              />
+            </View>
+          ) : (
+            <View>
+              <Text className="mb-5 py-4 px-4 mx-4 rounded-3xl">Hello!</Text>
+              <Text className="mb-5 py-4 px-4 mx-4 rounded-3xl">
+                What can I help you with?
+              </Text>
+            </View>
+          )}
           </ScrollView>
           <View className="flex-row border-t border-gray-200 px-5">
             <CustomInput
@@ -110,7 +98,7 @@ export default function Chat() {
             />
             <TouchableOpacity
               className="bg-black rounded-3xl w-14 h-14 mt-8 items-center justify-center ml-4"
-              onPress={handleSendMessage}
+              onPress={(text: string) => setUserInput(text)}
             >
               <Ionicons name="send" size={20} color="#fff" />
             </TouchableOpacity>
