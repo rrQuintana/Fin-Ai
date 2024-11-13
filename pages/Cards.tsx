@@ -18,6 +18,10 @@ import RecentTransactions from "@components/home/RecentTransactions";
 import { DebitAccountInterface } from "@interfaces/DebitAccountInterface";
 import { ColorOptions, CreditCardInterface, MonthDays } from "@interfaces/CreditCardInterface";
 import { sampleUser } from "@interfaces/UserDataInterface";
+import { useGetAllCreditCards } from "@hooks/cards/credit/useGetAllCreditCards";
+import { useGetAllDebitAccounts } from "@hooks/cards/debit/useGetAllDebitAccounts";
+import { useCreateCreditCard } from "@hooks/cards/credit/useCreateCreditCard";
+import { useCreateDebitAccount } from "@hooks/cards/debit/useCreateDebitAccount";
 
 export default function Cards() {
   type Nav = {
@@ -25,6 +29,10 @@ export default function Cards() {
   };
 
   const { navigate } = useNavigation<Nav>();
+  const { data: creditCards, isLoading } = useGetAllCreditCards();
+  const creditCardMutation = useCreateCreditCard();
+  const debitAccountMutation = useCreateDebitAccount();
+  const { data: debitAccounts, isLoading: isLoadingDebit } = useGetAllDebitAccounts();
   const [selectedOption, setSelectedOption] = useState("Cards");
   const [modalVisible, setModalVisible] = useState(false);
   const [cardModalVisible, setCardModalVisible] = useState(false);
@@ -77,13 +85,13 @@ export default function Cards() {
   const createCard = () => {
     newCard.usedCredit = parseFloat(newCard.usedCredit.toString());
     newCard.creditLimit = parseFloat((newCard.creditLimit ?? 0).toString());
-    sampleUser.creditCards.push(newCard);
+    creditCardMutation.mutate(newCard);
     closeModal();
   };
 
   const createAccount = () => {
     newAccount.balance = parseFloat(newAccount.balance.toString());
-    sampleUser.debitAccounts.push(newAccount);
+    debitAccountMutation.mutate(newAccount);
     closeModal();
   };
 
@@ -308,7 +316,7 @@ export default function Cards() {
             onPressOption2={() => setSelectedOption("Accounts")}
           />
           {selectedOption === "Cards" &&
-            sampleUser.creditCards.map((card, index) => (
+            creditCards.map((card, index) => (
               <CreditCard
                 key={index}
                 card={card}
@@ -317,7 +325,7 @@ export default function Cards() {
               />
             ))}
           {selectedOption === "Accounts" &&
-            sampleUser.debitAccounts.map((account, index) => (
+            debitAccounts.map((account, index) => (
               <DebitAccount
                 key={index}
                 account={account}
